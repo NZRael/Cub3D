@@ -6,14 +6,14 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:19 by fleriche          #+#    #+#             */
-/*   Updated: 2023/12/18 17:09:23 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/12/18 22:54:05 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "MiniLibX/mlx.h"
+# include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
 # include <fcntl.h>
 # include <stdlib.h>
@@ -46,6 +46,9 @@ typedef struct s_data {
     char    *C;
 	int		i_color;
 	int		nbr_comma;
+
+	void	*mlx_ptr;
+	void	*win_ptr;
 	// char	**map_buf;
 	// int		map_x;
 	// int		map_y;

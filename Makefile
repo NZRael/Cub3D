@@ -14,15 +14,16 @@ LIB_F = libft
 LIB = libft.a
 
 FLAGS = -Wall -Wextra -Werror -I .cub3D.h
-FLAGS_MLXMAC = -framework AppKit -framework OpenGL -lmlx -Lmlx -Imlx -L./libft -lft
-FLAGS_MLX = -lmlx -L./MiniLibX -lX11 -lXext -lm -L./libft -lft
+FLAGS_MLXMAC = -framework AppKit -framework OpenGL -lmlx -Lmlx -Imlx
+FLAGS_MLX = -lmlx -L./minilibx-linux -lX11 -lXext -lm
+
 NAME = cub3D
 
 all: $(NAME)
 
 $(NAME) : ${OBJS} $(LIB_F)/$(LIB)
 	@echo $(CURSIVE)$(GRAY) "     - Compiling $(NAME)..." $(NONE)
-	@gcc ${FLAGS} ${FLAGS_MLX} -o ${NAME} ${OBJS}
+	@gcc ${FLAGS} -o ${NAME} ${OBJS} ${FLAGS_MLX} -L./libft -lft
 	@echo $(GREEN)"     - Compiled -"$(NONE)
 	@echo $(CURSIVE)$(GRAY) "     - Deleted object files" $(NONE)
 
