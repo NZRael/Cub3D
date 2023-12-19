@@ -1,12 +1,8 @@
-WE               textures/wolfenstein/eagle.xpm
-
-NO dkeneivn      
-SO textures/wolfenstein/red_brick.xpm
-
+WE               ./textures/mossy.xpm
+NO ./textures/eagle.xpm      
+SO ./textures/red_brick.xpm
 F 69, 222, 174
-
-EA textures/wolfenstein/mossy.xpm
- 
+EA ./textures/mossy.xpm
 C 255, 198, 74
 
 111111111111111111111111

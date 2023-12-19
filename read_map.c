@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:45:47 by fleriche          #+#    #+#             */
-/*   Updated: 2023/12/18 16:18:28 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/12/19 15:50:21 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ void	read_map(char *map, t_data *dta)
 	}
 	dta->map_str = buffer;
 	dta->map = ft_split(buffer, '\n');
-	// printf("%s\n", dta->map_str);
-	// printf("%s", dta->map[1]);
-	// printf("%s", dta->map[1]);
-	// printf("%s", dta->map[2]);
-	// printf("%s", dta->map[3]);
 	close(fd);
 	free(buffer);
 }

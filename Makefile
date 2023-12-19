@@ -5,7 +5,8 @@ CURSIVE='\033[3m'
 
 SRCS = main.c read_map.c \
 		parsing.c error.c \
-		parsing_map.c \
+		parsing_map.c keys.c \
+		texture1.c check_args.c \
 
 OBJ = ./objs
 OBJS = $(addprefix $(OBJ)/, ${SRCS:.c=.o})
