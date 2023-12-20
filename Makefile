@@ -15,7 +15,7 @@ LIB_F = libft
 LIB = libft.a
 
 FLAGS = -Wall -Wextra -Werror -I .cub3D.h
-FLAGS_MLXMAC = -framework AppKit -framework OpenGL -lmlx -Lmlx -Imlx
+FLAGS_MLXMAC = -framework AppKit -framework OpenGL -lmlx -LMiniLibX
 FLAGS_MLX = -lmlx -L./minilibx-linux -lX11 -lXext -lm
 
 NAME = cub3D
