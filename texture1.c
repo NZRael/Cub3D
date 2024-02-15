@@ -19,7 +19,6 @@ void	test_textures(t_data *dta, int i)
 
 	if (i < 0 || i >= 6)
 		ft_exit(dta, "Indice de texture invalide.");
-	printf("PATH TEX : %s\n", dta->texture[i].path);
 	dta->texture[i].tex = mlx_xpm_file_to_image(dta->mlx_ptr,
 			dta->texture[i].path, &x, &y);
 	if (dta->texture[i].tex == NULL)
@@ -32,9 +31,14 @@ void	load_textures(t_data *dta)
 	int	i;
 
 	i = 0;
-	while (i < 6)
+	while (i < 4)
 	{
 		test_textures(dta, i);
+		i++;
+	}
+	while (i < 6)
+	{
+		test_rgb(dta, i);
 		i++;
 	}
 }
