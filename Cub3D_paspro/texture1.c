@@ -18,12 +18,13 @@ void	test_textures(t_data *dta, int i)
 	int	y;
 
 	if (i < 0 || i >= 6)
-		ft_exit(dta, "Indice de texture invalide.");
+		ft_exit(dta, "Index de texture invalide.");
+	printf("LOADING TEXTURE : '%s'\n", dta->texture[i].path);
 	dta->texture[i].tex = mlx_xpm_file_to_image(dta->mlx_ptr,
 			dta->texture[i].path, &x, &y);
 	if (dta->texture[i].tex == NULL)
 		ft_exit(dta, "Invalid textures !");
-	printf("The texture '%s' is loaded successfully.\n", dta->texture[i].path);
+	printf("Texture '%s' is loaded successfully.\n", dta->texture[i].path);
 }
 
 void	load_textures(t_data *dta)
@@ -36,9 +37,9 @@ void	load_textures(t_data *dta)
 		test_textures(dta, i);
 		i++;
 	}
-	while (i < 6)
-	{
-		test_rgb(dta, i);
-		i++;
-	}
+	// while (i < 6)
+	// {
+	// 	test_rgb(dta, i);
+	// 	i++;
+	// }
 }
