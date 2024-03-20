@@ -7,6 +7,7 @@ SRCS = main.c read_map.c \
 		parsing.c error.c \
 		parsing_map.c keys.c \
 		texture1.c check_args.c \
+		init_raycasting.c ft_take_map.c
 
 OBJ = ./objs
 OBJS = $(addprefix $(OBJ)/, ${SRCS:.c=.o})
@@ -15,7 +16,6 @@ LIB_F = libft
 LIB = libft.a
 
 FLAGS = -Wall -Wextra -Werror -I .cub3D.h
-FLAGS_MLXMAC = -framework AppKit -framework OpenGL -lmlx -LMiniLibX
 FLAGS_MLX = -lmlx -L./minilibx-linux -lX11 -lXext -lm
 
 NAME = cub3D
@@ -44,6 +44,7 @@ clean:
 fclean: clean
 	@echo $(CURSIVE)$(GRAY) "     - Removing $(NAME)..." $(NONE)
 	@make fclean -C $(LIB_F)
+	@rm -rf ${NAME}
 	@echo $(GREEN)"     - Removed -"$(NONE)
 
 re: fclean all

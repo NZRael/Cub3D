@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:08:30 by fleriche          #+#    #+#             */
-/*   Updated: 2023/12/18 15:55:42 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/02/16 14:01:12 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void verif_doublon(t_data *dta)
 	int nbr_all;
 
 	nbr_all = dta->nbr_n + dta->nbr_s + dta->nbr_e + dta->nbr_w;
-	printf("%d\n", nbr_all);
+	//printf("nbr_all : %d\n", nbr_all); //DOIT ETRE = 1
 	if (nbr_all != 1)
 		ft_exit(dta, "trop ou pas de N,S,E,W");
 }

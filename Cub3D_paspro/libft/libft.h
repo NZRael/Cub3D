@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:13:35 by sboetti           #+#    #+#             */
-/*   Updated: 2023/07/10 13:45:32 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/19 15:15:32 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	ft_putstr_fd(char *str, int fd);
 void	ft_putendl_fd(char *str, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_sort_int_tab(int *tab, int size);
+double	ft_abs(double num);
 
 int		ft_printf(const char *s, ...);
 void	ft_arguments(char str, va_list arg, int *count);

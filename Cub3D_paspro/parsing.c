@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:04:02 by fleriche          #+#    #+#             */
-/*   Updated: 2023/12/19 15:50:43 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/19 18:25:48 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,21 +132,21 @@ void verif_color(t_data *dta)
 			ft_exit(dta, "nique bien ta mere\n");
 		i++;
 	}
-	if (dta->color[0].red == 0 || dta->color[0].green == 0 || dta->color[0].blue == 0 ||
-			dta->color[1].red == 0 || dta->color[1].green == 0 || dta->color[1].blue == 0)
+	if (dta->color[0].red < 0 || dta->color[0].green < 0 || dta->color[0].blue < 0
+		|| dta->color[1].red < 0 || dta->color[1].green < 0 || dta->color[1].blue < 0)
 		ft_exit(dta, "color pas bon mon copainnn\n");
 	if (dta->nbr_comma != 4)
 		ft_exit(dta, "pas bon, trop de virgules\n");
-	if (dta->color[0].red > 255 || dta->color[0].green > 255 || dta->color[0].blue > 255 ||
-			dta->color[1].red > 255 || dta->color[1].green > 255 || dta->color[1].blue > 255)
+	if (dta->color[0].red > 255 || dta->color[0].green > 255 || dta->color[0].blue > 255
+		|| dta->color[1].red > 255 || dta->color[1].green > 255 || dta->color[1].blue > 255)
 		ft_exit(dta, "wsh t un ouf a mettre des nombres comme ca gros\n");
 }
 
 //13/12/2023
-int init_color(t_data *dta, char *id)
+int	init_color(t_data *dta, char *id)
 {
-	int i2;
-	char *nbr;
+	int		i2;
+	char	*nbr;
 
 	i2 = dta->i_color;
 	while (id[i2] >= '0' && id[i2] <= '9')
@@ -166,7 +166,7 @@ int init_color(t_data *dta, char *id)
 			i2++;
 		while (id[i2] != '\0')
 		{
-			printf("%c\n",id[i2]);
+			printf("caractere : %c\n",id[i2]);
 			if (!(id[i2] == ' ' || id[i2] == '\t' || id[i2] == ',' ))
 				ft_exit(dta, "trop de nombres , RVB\n");
 			i2++;
@@ -190,20 +190,20 @@ int first_parsing(t_data *dta)
 	dta->texture[3].path = init_path(dta->WE, 2);
 	dta->texture[4].path = init_path(dta->F, 1);
 	dta->texture[5].path = init_path(dta->C, 1);
-	printf("%s\n", dta->texture[0].path);
+	//printf("dta->texture[0].path : '%s'\n", dta->texture[0].path);
 	dta->color[0].red = init_color(dta, dta->texture[4].path);
 	dta->color[0].green = init_color(dta, dta->texture[4].path);
 	dta->color[0].blue = init_color(dta, dta->texture[4].path);
-	printf("%d\n", dta->color[0].red);
-	printf("%d\n", dta->color[0].green);
-	printf("%d\n", dta->color[0].blue);
+	// printf("dta->color[0].red : '%d'\n", dta->color[0].red);
+	// printf("dta->color[0].green : '%d'\n", dta->color[0].green);
+	// printf("dta->color[0].blue : '%d'\n", dta->color[0].blue);
 	dta->i_color = 0;
 	dta->color[1].red = init_color(dta, dta->texture[5].path);
 	dta->color[1].green = init_color(dta, dta->texture[5].path);
 	dta->color[1].blue = init_color(dta, dta->texture[5].path);
-	printf("%d\n", dta->color[1].red);
-	printf("%d\n", dta->color[1].green);
-	printf("%d\n", dta->color[1].blue);
+	// printf("dta->color[1].red : '%d'\n", dta->color[1].red);
+	// printf("dta->color[1].green : '%d'\n", dta->color[1].green);
+	// printf("dta->color[1].blue : '%d'\n", dta->color[1].blue);
 	verif_color(dta);
 	//printf("%s\n", dta->texture[4].path);
 	//dta.C_tex->C_path = init_path(dta, dta->C, 1);
