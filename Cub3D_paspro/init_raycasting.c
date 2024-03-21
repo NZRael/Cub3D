@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:39:06 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/21 12:01:22 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/21 16:16:17 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	init_raycasting(t_data *dta)
 
 	x = 0;
 	load_textures(dta);
+	// printf("posx = %f et posy = %f\n", dta->p.pos_x, dta->p.pos_y);
 	while (x < dta->width)
 	{
 		dta->cameraX = 2 * x / (double)(dta->width) - 1;

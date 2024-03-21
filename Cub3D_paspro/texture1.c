@@ -45,7 +45,6 @@ void	test_rgb0(t_data *dta, int i)
 		}
 		y++;
 	}
-	mlx_put_image_to_window(dta->mlx.mlx_ptr, dta->mlx.win_ptr, dta->mlx.img, 0, 0);
 }
 
 void	test_rgb1(t_data *dta, int i)
@@ -66,7 +65,6 @@ void	test_rgb1(t_data *dta, int i)
 		}
 		y++;
 	}
-	mlx_put_image_to_window(dta->mlx.mlx_ptr, dta->mlx.win_ptr, dta->mlx.img, 0, 0);
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
