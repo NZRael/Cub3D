@@ -6,22 +6,22 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:39:06 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/20 16:13:53 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/21 12:01:22 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	init_player(t_data *dta)
+void	init_p(t_data *dta)
 {
-	dta->player.pos_x = 14;
-	dta->player.pos_y = 10;
-	dta->player.dir_x = -1;
-	dta->player.dir_y = 0;
-	dta->player.plane_x = 0;
-	dta->player.plane_y = 0.66;
-	dta->player.moveSpeed = 0.15;
-	dta->player.rotSpeed = 0.05;
+	dta->p.pos_x = 14;
+	dta->p.pos_y = 10;
+	dta->p.dir_x = -1;
+	dta->p.dir_y = 0;
+	dta->p.plane_x = 0;
+	dta->p.plane_y = 0.66;
+	dta->p.moveSpeed = 0.15;
+	dta->p.rotSpeed = 0.07;
 }
 
 void	init_raycasting(t_data *dta)
@@ -34,10 +34,10 @@ void	init_raycasting(t_data *dta)
 	while (x < dta->width)
 	{
 		dta->cameraX = 2 * x / (double)(dta->width) - 1;
-		dta->rayDirX = dta->player.dir_x + dta->player.plane_x * dta->cameraX;
-		dta->rayDirY = dta->player.dir_y + dta->player.plane_y * dta->cameraX;
-		dta->mapX = (int)dta->player.pos_x;
-		dta->mapY = (int)dta->player.pos_y;
+		dta->rayDirX = dta->p.dir_x + dta->p.plane_x * dta->cameraX;
+		dta->rayDirY = dta->p.dir_y + dta->p.plane_y * dta->cameraX;
+		dta->mapX = (int)dta->p.pos_x;
+		dta->mapY = (int)dta->p.pos_y;
 		calcul_delta(dta);
 		dta->hit = 0;
 		calcul_side_dest(dta);
@@ -70,22 +70,22 @@ void	calcul_side_dest(t_data *dta)
 	if (dta->rayDirX < 0)
 	{
 		dta->stepX = -1;
-		dta->sideDistX = (dta->player.pos_x - dta->mapX) * dta->deltaDistX;
+		dta->sideDistX = (dta->p.pos_x - dta->mapX) * dta->deltaDistX;
 	}
 	else
 	{
 		dta->stepX = 1;
-		dta->sideDistX = (dta->mapX + 1.0 - dta->player.pos_x) * dta->deltaDistX;
+		dta->sideDistX = (dta->mapX + 1.0 - dta->p.pos_x) * dta->deltaDistX;
 	}
 	if (dta->rayDirY < 0)
 	{
 		dta->stepY = -1;
-		dta->sideDistY = (dta->player.pos_y - dta->mapY) * dta->deltaDistY;
+		dta->sideDistY = (dta->p.pos_y - dta->mapY) * dta->deltaDistY;
 	}
 	else
 	{
 		dta->stepY = 1;
-		dta->sideDistY = (dta->mapY + 1.0 - dta->player.pos_y) * dta->deltaDistY;
+		dta->sideDistY = (dta->mapY + 1.0 - dta->p.pos_y) * dta->deltaDistY;
 	}
 }
 

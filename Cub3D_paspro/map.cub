@@ -2,7 +2,7 @@ WE        			./textures/mossy.xpm
 NO ./textures/eagle.xpm
 SO ./textures/red_brick.xpm
 F 190, 150, 110 
-C 70,		 190,				 255	
+C 70,		 190,				 255
 EA ./textures/mossy.xpm
 
 111111111111111111111111

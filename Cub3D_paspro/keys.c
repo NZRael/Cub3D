@@ -21,61 +21,91 @@ int	keypress_esc(int key, t_data *dta)
 		ft_exit_success(dta);
 	}
 	if (key == 119)//AVANCER
-	{
 		ft_forward(dta, key);
-	}
 	if (key == 115)//RECULER//s'il n'y a pas de mur derriere toi
-	{
 		ft_backward(dta, key);
-	}
-	if (key == 100)//DROITE //la direction et le plan de la caméra doivent pivoter
-	{
+	if (key == 100)//DROITE
 		ft_right(dta, key);
-	}
-	if (key == 97)// GAUCHE //la direction et le plan de la caméra doivent pivoter
-	{
+	if (key == 97)//GAUCHE 
 		ft_left(dta, key);
-	}
+	if (key == 65363)//ROTATE DROITE //la direction et le plan de la caméra doivent pivoter
+		ft_rotate_right(dta, key);
+	if (key == 65361)//ROTATE GAUCHE //la direction et le plan de la caméra doivent pivoter
+		ft_rotate_left(dta, key);
 	init_raycasting(dta);
 	return (0);
 }
 
 void	ft_forward(t_data *dta, int key)
 {
-	printf("forward : %d\n", key);
-	if (dta->real_map[(int)(dta->player.pos_x + dta->player.dir_x * dta->player.moveSpeed)][(int)(dta->player.pos_y)] != '1')
-		dta->player.pos_x += dta->player.dir_x * dta->player.moveSpeed;
-	else if (dta->real_map[(int)(dta->player.pos_x)][(int)(dta->player.pos_y + dta->player.pos_y * dta->player.moveSpeed)] != '1')
-		dta->player.pos_y += dta->player.pos_y * dta->player.moveSpeed;
+	// printf("forward : %d\n", key);
+	(void) key;
+	if (dta->real_map[(int)(dta->p.pos_x + dta->p.dir_x * dta->p.moveSpeed)][(int)(dta->p.pos_y)] != '1')
+		dta->p.pos_x += dta->p.dir_x * dta->p.moveSpeed;
+	if (dta->real_map[(int)(dta->p.pos_x)][(int)(dta->p.pos_y + dta->p.pos_y * dta->p.moveSpeed)] != '1')
+		dta->p.pos_y += dta->p.dir_y * dta->p.moveSpeed;
 }
 
 void	ft_backward(t_data *dta, int key)
 {
-	printf("backward : %d\n", key);
-	if (dta->real_map[(int)(dta->player.pos_x - dta->player.dir_x * dta->player.moveSpeed)][(int)(dta->player.pos_y)] != '1')
-		dta->player.pos_x -= dta->player.dir_x * dta->player.moveSpeed;
-	else if (dta->real_map[(int)(dta->player.pos_x)][(int)(dta->player.pos_y - dta->player.pos_y * dta->player.moveSpeed)] != '1')
-		dta->player.pos_y -= dta->player.pos_y * dta->player.moveSpeed;
+	// printf("backward : %d\n", key);
+	(void) key;
+	if (dta->real_map[(int)(dta->p.pos_x - dta->p.dir_x * dta->p.moveSpeed)][(int)(dta->p.pos_y)] != '1')
+		dta->p.pos_x -= dta->p.dir_x * dta->p.moveSpeed;
+	if (dta->real_map[(int)(dta->p.pos_x)][(int)(dta->p.pos_y - dta->p.pos_y * dta->p.moveSpeed)] != '1')
+		dta->p.pos_y -= dta->p.dir_y * dta->p.moveSpeed;
 }
 
 void	ft_right(t_data *dta, int key)
 {
-	printf("right : %d\n", key);
-	double oldDirX = dta->player.dir_x;
-	dta->player.dir_x = dta->player.dir_x * cos(-(dta->player.rotSpeed)) - dta->player.pos_y * sin(-(dta->player.rotSpeed));
-	dta->player.pos_y = oldDirX * sin(-(dta->player.rotSpeed)) + dta->player.pos_y * cos(-(dta->player.rotSpeed));
-	double oldPlaneX = dta->player.plane_x;
-	dta->player.plane_x = dta->player.plane_x * cos(-(dta->player.rotSpeed)) - dta->player.plane_y * sin(-(dta->player.rotSpeed));
-	dta->player.plane_y = oldPlaneX * sin(-(dta->player.rotSpeed)) + dta->player.plane_y * cos(-(dta->player.rotSpeed));
+	(void) key;
+	if (dta->real_map[(int)(dta->p.pos_x + dta->p.dir_x *
+				(dta->p.moveSpeed * 2))][(int)dta->p.pos_y] == '0')
+		dta->p.pos_x += dta->p.dir_y * dta->p.moveSpeed;
+	if (dta->real_map[(int)dta->p.pos_x][(int)(dta->p.pos_y -
+				dta->p.dir_x *
+				(dta->p.moveSpeed * 2))] == '0')
+		dta->p.pos_y -= dta->p.dir_x * dta->p.moveSpeed;
 }
 
 void	ft_left(t_data *dta, int key)
 {
-	printf("left : %d\n", key);
-	double oldDirX = dta->player.dir_x;
-	dta->player.dir_x = dta->player.dir_x * cos(dta->player.rotSpeed) - dta->player.pos_y * sin(dta->player.rotSpeed);
-	dta->player.pos_y = oldDirX * sin(dta->player.rotSpeed) + dta->player.pos_y * cos(dta->player.rotSpeed);
-	double oldPlaneX = dta->player.plane_x;
-	dta->player.plane_x = dta->player.plane_x * cos(dta->player.rotSpeed) - dta->player.plane_y * sin(dta->player.rotSpeed);
-	dta->player.plane_y = oldPlaneX * sin(dta->player.rotSpeed) + dta->player.plane_y * cos(dta->player.rotSpeed);
+	(void) key;
+	if (dta->real_map[(int)(dta->p.pos_x - dta->p.dir_y *
+				(dta->p.moveSpeed * 2))][(int)dta->p.pos_y] == '0')
+		dta->p.pos_x -= dta->p.dir_y * dta->p.moveSpeed;
+	if (dta->real_map[(int)dta->p.pos_x][(int)(dta->p.pos_y +
+				dta->p.dir_x *
+				(dta->p.moveSpeed * 2))] == '0')
+		dta->p.pos_y += dta->p.dir_x * dta->p.moveSpeed;
+}
+
+void	ft_rotate_right(t_data *dta, int key)
+{
+	// printf("right : %d\n", key);
+	(void) key;
+	double oldDirX;
+	double oldPlaneX;
+
+	oldDirX = dta->p.dir_x;
+	dta->p.dir_x = dta->p.dir_x * cos(-(dta->p.rotSpeed)) - dta->p.dir_y * sin(-(dta->p.rotSpeed));
+	dta->p.dir_y = oldDirX * sin(-(dta->p.rotSpeed)) + dta->p.dir_y * cos(-(dta->p.rotSpeed));
+	oldPlaneX = dta->p.plane_x;
+	dta->p.plane_x = dta->p.plane_x * cos(-(dta->p.rotSpeed)) - dta->p.plane_y * sin(-(dta->p.rotSpeed));
+	dta->p.plane_y = oldPlaneX * sin(-(dta->p.rotSpeed)) + dta->p.plane_y * cos(-(dta->p.rotSpeed));
+}
+
+void	ft_rotate_left(t_data *dta, int key)
+{
+	// printf("left : %d\n", key);
+	(void) key;
+	double oldDirX;
+	double oldPlaneX;
+
+	oldDirX = dta->p.dir_x;
+	dta->p.dir_x = dta->p.dir_x * cos(dta->p.rotSpeed) - dta->p.dir_y * sin(dta->p.rotSpeed);
+	dta->p.dir_y = oldDirX * sin(dta->p.rotSpeed) + dta->p.dir_y * cos(dta->p.rotSpeed);
+	oldPlaneX = dta->p.plane_x;
+	dta->p.plane_x = dta->p.plane_x * cos(dta->p.rotSpeed) - dta->p.plane_y * sin(dta->p.rotSpeed);
+	dta->p.plane_y = oldPlaneX * sin(dta->p.rotSpeed) + dta->p.plane_y * cos(dta->p.rotSpeed);
 }

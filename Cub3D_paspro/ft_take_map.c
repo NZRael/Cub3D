@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:59:35 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/20 15:36:59 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/21 10:54:12 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_take_map(t_data *dta)
 			while (dta->map[x] != NULL)
 			{
 				dta->real_map[i] = ft_strdup(dta->map[x]);
-				printf("dta->real_map[%d] = %s\n", i, dta->real_map[i]);
+				// printf("dta->real_map[%d] = %s\n", i, dta->real_map[i]);
 				i++;
 				x++;
 			}

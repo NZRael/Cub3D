@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:45:27 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/18 16:30:00 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/21 12:40:28 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,13 @@ void	ft_exit_success(t_data *dta)
 	// a faire
 	dta->map_str = dta->map_str;
 	exit(EXIT_SUCCESS);
+}
+
+int	ft_destroy_wind(int event, t_data *dta)
+{
+	(void)event;
+	exit(EXIT_SUCCESS);
+	/////////////////////
+	ft_exit_success(dta);
+	return (0);
 }

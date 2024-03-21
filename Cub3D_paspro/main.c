@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:16 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/20 16:10:48 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/21 12:39:13 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ int	main(int argc, char **argv)
 	// 	printf("dta->real_map[%d] = '%s'\n", x, dta.real_map[x]);
 /////////////////////////
 	mlx_begin(&dta);
-	init_player(&dta);
+	init_p(&dta);
 	// load_textures(&dta);
 	init_raycasting(&dta);
 
 	mlx_hook(dta.mlx.win_ptr, 2, 1L<<0, &keypress_esc, &dta);
+	mlx_hook(dta.mlx.win_ptr, 17, 1L<<17, &ft_destroy_wind, NULL);
 	mlx_loop(dta.mlx.mlx_ptr);
 	return (0);
 }

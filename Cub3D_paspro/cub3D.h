@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:19 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/20 16:10:28 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/21 12:37:15 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <math.h>
+
+//F 190, 150, 110 
+//C 70,		 190,				 255	
 
 typedef struct s_texture
 {
@@ -34,7 +37,7 @@ typedef struct s_color
 	int	blue;
 }	t_color;
 
-typedef struct s_player
+typedef struct s_p
 {
 	double	pos_x;
 	double	pos_y;
@@ -44,7 +47,7 @@ typedef struct s_player
 	double	plane_y;
 	double	moveSpeed;
 	double	rotSpeed;
-}	t_player;
+}	t_p;
 
 typedef struct s_mlx
 {
@@ -61,7 +64,7 @@ typedef struct s_data
 {
 	t_texture	texture[6];
 	t_color		color[2];
-	t_player	player;
+	t_p	p;
 	t_mlx		mlx;
 	int			nbr_n;
 	int			nbr_s;
@@ -115,6 +118,7 @@ int		structuration(t_data *dta);
 int		all_parsing(t_data *dta);
 void	ft_exit(t_data *dta, char *str);
 void	ft_exit_success(t_data *dta);
+int		ft_destroy_wind(int event, t_data *dta);
 void	ft_initialisation(t_data *dta);
 void	verif_char(t_data *dta, int i, int i2);
 int		parsing_map(t_data *dta);
@@ -124,10 +128,12 @@ void	ft_forward(t_data *dta, int key);
 void	ft_backward(t_data *dta, int key);
 void	ft_right(t_data *dta, int key);
 void	ft_left(t_data *dta, int key);
+void	ft_rotate_right(t_data *dta, int key);
+void	ft_rotate_left(t_data *dta, int key);
 
 void	test_init_textures(t_data *dta, int i);
 void	load_textures(t_data *dta);
-void	init_player(t_data *dta);
+void	init_p(t_data *dta);
 void	init_raycasting(t_data *dta);
 void	calcul_delta(t_data *dta);
 void	calcul_side_dest(t_data *dta);
