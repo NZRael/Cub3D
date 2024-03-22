@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:19 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/21 12:37:15 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/21 17:24:27 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ typedef struct s_mlx
 	void		*win_ptr;
 	void		*img;
 	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
+	int			bits_p_pix;
+	int			l_length;
 	int			endian;
 }	t_mlx;
 
@@ -84,6 +84,7 @@ typedef struct s_data
 	int			nbr_comma;
 	int			width;
 	int			height;
+	int			mlx_color;
 	
 	double		cameraX;
 	double		rayDirX;

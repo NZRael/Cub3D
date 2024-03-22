@@ -59,7 +59,7 @@ void	ft_backward(t_data *dta, int key)
 void	ft_right(t_data *dta, int key)
 {
 	(void) key;
-	if (dta->real_map[(int)(dta->p.pos_x + dta->p.dir_x *
+	if (dta->real_map[(int)(dta->p.pos_x + dta->p.dir_y *
 				(dta->p.moveSpeed * 2))][(int)dta->p.pos_y] == '0')
 		dta->p.pos_x += dta->p.dir_y * dta->p.moveSpeed;
 	if (dta->real_map[(int)dta->p.pos_x][(int)(dta->p.pos_y -

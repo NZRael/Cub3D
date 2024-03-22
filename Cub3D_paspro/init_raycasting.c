@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:39:06 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/21 16:16:17 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/21 17:20:46 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_p(t_data *dta)
 	dta->p.dir_x = -1;
 	dta->p.dir_y = 0;
 	dta->p.plane_x = 0;
-	dta->p.plane_y = 0.66;
+	dta->p.plane_y = 0.80;
 	dta->p.moveSpeed = 0.15;
 	dta->p.rotSpeed = 0.07;
 }

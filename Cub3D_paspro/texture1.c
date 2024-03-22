@@ -27,31 +27,10 @@ void	test_init_textures(t_data *dta, int i)
 	printf("Texture '%s' is loaded successfully.\n", dta->texture[i].path);
 }
 
-void	test_rgb0(t_data *dta, int i)
+void	test_rgb(t_data *dta)
 {
 	int	x;
 	int	y;
-	int	mlx_color;
-
-	y = dta->height / 2;
-	while (y < dta->height)
-	{
-		x = 0;
-		while (x < dta->width)
-		{
-			mlx_color = (dta->color[i].red << 16) | (dta->color[i].green << 8) | dta->color[i].blue;
-			my_mlx_pixel_put(dta, x, y, mlx_color);
-			x++;
-		}
-		y++;
-	}
-}
-
-void	test_rgb1(t_data *dta, int i)
-{
-	int	x;
-	int	y;
-	int	mlx_color;
 
 	y = 0;
 	while (y < dta->height / 2)
@@ -59,22 +38,23 @@ void	test_rgb1(t_data *dta, int i)
 		x = 0;
 		while (x < dta->width)
 		{
-			mlx_color = (dta->color[i].red << 16) | (dta->color[i].green << 8) | dta->color[i].blue;
-			my_mlx_pixel_put(dta, x, y, mlx_color);
-			x++;
+			///////////////
+			dta->mlx_color = (dta->color[1].red << 16) | (dta->color[1].green << 8) | dta->color[1].blue;
+			my_mlx_pixel_put(dta, x++, y, dta->mlx_color);
 		}
 		y++;
 	}
-}
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	if (y < 0 || y >= data->height || x < 0 || x >= data->width)
-		return ;
-	dst = data->mlx.addr + (y * data->mlx.line_length + x * (data->mlx.bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	while (y < dta->height)
+	{
+		x = 0;
+		while (x < dta->width)
+		{
+			/////////////
+			dta->mlx_color = (dta->color[0].red << 16) | (dta->color[0].green << 8) | dta->color[0].blue;
+			my_mlx_pixel_put(dta, x++, y, dta->mlx_color);
+		}
+		y++;
+	}
 }
 
 void	load_textures(t_data *dta)
@@ -87,6 +67,20 @@ void	load_textures(t_data *dta)
 	// 	test_init_textures(dta, i);
 	// 	i++;
 	// }
-	test_rgb0(dta, 0);
-	test_rgb1(dta, 1);
+	test_rgb(dta);
+}
+
+int	create_trgb(int r, int g, int b)
+{
+	return (r << 16 | g << 8 | b);
+}
+
+void	my_mlx_pixel_put(t_data *dta, int x, int y, int color)
+{
+	char	*d;
+
+	// if (y < 0 || y >= dta->height || x < 0 || x >= dta->width)
+	// 	return ;
+	d = dta->mlx.addr + (y * dta->mlx.l_length + x * (dta->mlx.bits_p_pix / 8));
+	*(unsigned int *)d = color;
 }

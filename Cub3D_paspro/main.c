@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:16 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/21 12:39:13 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/21 17:24:28 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	mlx_begin(t_data *dta)
 	dta->mlx.mlx_ptr = mlx_init();
 	dta->mlx.win_ptr = mlx_new_window(dta->mlx.mlx_ptr, dta->width, dta->height, "Cub3D");
 	dta->mlx.img = mlx_new_image(dta->mlx.mlx_ptr, dta->width, dta->height);
-	dta->mlx.addr = mlx_get_data_addr(dta->mlx.img, &dta->mlx.bits_per_pixel, &dta->mlx.line_length,
+	dta->mlx.addr = mlx_get_data_addr(dta->mlx.img, &dta->mlx.bits_p_pix, &dta->mlx.l_length,
 								&dta->mlx.endian);
 	return ;
 }
