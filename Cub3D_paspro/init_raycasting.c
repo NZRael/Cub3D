@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:39:06 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/21 17:20:46 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/22 09:25:14 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int	test_texture(t_data *dta)
 
 	// printf("dta->realmap[%d][%d] = %c\n", (int)dta->mapX, (int)dta->mapY, dta->real_map[(int)dta->mapX][(int)dta->mapY]);
 	if (dta->real_map[(int)dta->mapX][(int)dta->mapY] == '1')
-		color = (0 << 16) | (0 << 8) | 255;
+		color = create_rgb((0 << 16), (0 << 8), 255);
 	else
 		color = -1;
 	return color;

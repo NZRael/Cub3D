@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:19 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/21 17:24:27 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/22 09:21:23 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ typedef struct s_data
 	int			nbr_comma;
 	int			width;
 	int			height;
-	int			mlx_color;
 	
 	double		cameraX;
 	double		rayDirX;
@@ -132,6 +131,8 @@ void	ft_left(t_data *dta, int key);
 void	ft_rotate_right(t_data *dta, int key);
 void	ft_rotate_left(t_data *dta, int key);
 
+int		create_rgb(int r, int g, int b);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	test_init_textures(t_data *dta, int i);
 void	load_textures(t_data *dta);
 void	init_p(t_data *dta);
@@ -146,6 +147,5 @@ int		test_texture(t_data *dta);
 void	ft_take_map(t_data *dta);
 int		ft_count_take_map(t_data *dta);
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

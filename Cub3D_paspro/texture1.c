@@ -37,22 +37,16 @@ void	test_rgb(t_data *dta)
 	{
 		x = 0;
 		while (x < dta->width)
-		{
-			///////////////
-			dta->mlx_color = (dta->color[1].red << 16) | (dta->color[1].green << 8) | dta->color[1].blue;
-			my_mlx_pixel_put(dta, x++, y, dta->mlx_color);
-		}
+			my_mlx_pixel_put(dta, x++, y, create_rgb(dta->color[1].red,
+					dta->color[1].green, dta->color[1].blue));
 		y++;
 	}
 	while (y < dta->height)
 	{
 		x = 0;
 		while (x < dta->width)
-		{
-			/////////////
-			dta->mlx_color = (dta->color[0].red << 16) | (dta->color[0].green << 8) | dta->color[0].blue;
-			my_mlx_pixel_put(dta, x++, y, dta->mlx_color);
-		}
+			my_mlx_pixel_put(dta, x++, y, create_rgb(dta->color[0].red,
+					dta->color[0].green, dta->color[0].blue));
 		y++;
 	}
 }
@@ -60,7 +54,7 @@ void	test_rgb(t_data *dta)
 void	load_textures(t_data *dta)
 {
 	// int	i;
-
+//
 	// i = 0;
 	// while (i < 4)
 	// {
@@ -70,7 +64,7 @@ void	load_textures(t_data *dta)
 	test_rgb(dta);
 }
 
-int	create_trgb(int r, int g, int b)
+int	create_rgb(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
 }
