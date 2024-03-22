@@ -1,4 +1,4 @@
-SRCS = srcs/main.c srcs/read_map.c srcs/check_args.c srcs/all_parsing.c srcs/error.c
+SRCS = srcs/main.c srcs/read_map.c srcs/check_args.c srcs/parsing.c srcs/error.c srcs/parsing_map.c
 
 SRCS_BONUS =
 
