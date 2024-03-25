@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:39:06 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/22 09:25:14 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/25 14:52:30 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,17 @@ void	init_p(t_data *dta)
 	dta->p.plane_y = 0.80;
 	dta->p.moveSpeed = 0.15;
 	dta->p.rotSpeed = 0.07;
+	dta->texheight = 64;
+	dta->texwidth = 64;
 }
 
 void	init_raycasting(t_data *dta)
 {
 	int	x;
-	int	color;
+	// int	color;
 
 	x = 0;
-	load_textures(dta);
-	// printf("posx = %f et posy = %f\n", dta->p.pos_x, dta->p.pos_y);
+	print_fc(dta);
 	while (x < dta->width)
 	{
 		dta->cameraX = 2 * x / (double)(dta->width) - 1;
@@ -44,11 +45,12 @@ void	init_raycasting(t_data *dta)
 		calcul_side_dest(dta);
 		perform_dda(dta);
 		projected_dist(dta);
-		color = test_texture(dta);
-		if (dta->side == 1)
-			color = color / 2;
-		if (color != -1)
-			print_wall(dta, x, color);
+		// color = test_colors(dta);
+		// if (dta->side == 1)
+		// 	color = color / 2;
+		// if (color != -1)
+		// 	print_wall(dta, x, color);
+		print_wall(dta, x);
 		x++;
 	}
 	mlx_put_image_to_window(dta->mlx.mlx_ptr, dta->mlx.win_ptr, dta->mlx.img, 0, 0);
@@ -126,40 +128,63 @@ void	projected_dist(t_data *dta)
 		dta->drawEnd = dta->height - 1;
 }
 
-int	test_texture(t_data *dta)
+// int	test_colors(t_data *dta)
+// {
+// 	int	color;
+
+// 	// printf("dta->realmap[%d][%d] = %c\n", (int)dta->mapX, (int)dta->mapY, dta->real_map[(int)dta->mapX][(int)dta->mapY]);
+// 	if (dta->real_map[(int)dta->mapX][(int)dta->mapY] == '1')
+// 		color = create_rgb((0 << 16), (0 << 8), 255);
+// 	else
+// 		color = -1;
+// 	return color;
+// }
+
+// void	test_texture(t_data *dta)
+// {
+// 	int 	tex_num;
+// 	int		tex_x;
+// 	double	wallx;
+
+// 	tex_num = (int)dta->real_map[(int)dta->mapX][(int)dta->mapY];
+// 	if (dta->side == 0)
+// 		wallx = dta->p.pos_y + dta->perpWallDist * dta->rayDirY;
+// 	else
+// 		wallx = dta->p.pos_x + dta->perpWallDist * dta->rayDirX;
+// 	wallx -= floor(wallx);
+// 	tex_x = (int)(wallx * (double)(dta->texwidth));
+//       if(dta->side == 0 && dta->rayDirX > 0)
+// 	  	tex_x = dta->texwidth - tex_x - 1;
+//       if(dta->side == 1 && dta->rayDirY < 0)
+// 	  	tex_x = dta->texwidth - tex_x - 1;
+// }
+
+void	print_wall(t_data *dta, int x)
 {
-	int	color;
+	int				y;
+	unsigned int	color;
+	// int	tmp;
 
-	// printf("dta->realmap[%d][%d] = %c\n", (int)dta->mapX, (int)dta->mapY, dta->real_map[(int)dta->mapX][(int)dta->mapY]);
-	if (dta->real_map[(int)dta->mapX][(int)dta->mapY] == '1')
-		color = create_rgb((0 << 16), (0 << 8), 255);
-	else
-		color = -1;
-	return color;
-}
-
-void	print_wall(t_data *dta, int x, int color)
-{
-	int y;
-	int	tmp;
-
-	tmp = 0;
-	if (dta->drawEnd < dta->drawStart)
-	{
-		tmp = dta->drawStart;
-		dta->drawStart = dta->drawEnd;
-		dta->drawEnd = tmp;
-	}
-	if (dta->drawEnd < 0 || dta->drawStart >= dta->height || x < 0 || x >= dta->width)
-		return ;
-	if (dta->drawStart < 0)
-		dta->drawStart = 0;
-	if (dta->drawEnd >= dta->height)
-		dta->drawEnd = dta->height - 1;
+	// tmp = 0;
+	// if (dta->drawEnd < dta->drawStart)
+	// {
+	// 	tmp = dta->drawStart;
+	// 	dta->drawStart = dta->drawEnd;
+	// 	dta->drawEnd = tmp;
+	// }
+	// if (dta->drawEnd < 0 || dta->drawStart >= dta->height || x < 0 || x >= dta->width)
+	// 	return ;
+	// if (dta->drawStart < 0)
+	// 	dta->drawStart = 0;
+	// if (dta->drawEnd >= dta->height)
+	// 	dta->drawEnd = dta->height - 1;
+	color = 0;
 	y = dta->drawStart;
-    while (y <= dta->drawEnd)
-    {
-        my_mlx_pixel_put(dta, x, y, color);
-        y++;
-    }
+	while (y <= dta->drawEnd)
+	{
+		//printf("y = %d\n", y);
+		color = my_mlx_pixel_get(dta, x, y, 0);
+		my_mlx_pixel_put(dta, x, y, color);
+		y++;
+	}
 }

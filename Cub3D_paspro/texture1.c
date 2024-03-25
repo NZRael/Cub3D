@@ -12,7 +12,16 @@
 
 #include "cub3D.h"
 
-void	test_init_textures(t_data *dta, int i)
+void	init_textures(t_data *dta)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 4)
+		init_texture(dta, i);
+}
+
+void	init_texture(t_data *dta, int i)
 {
 	int	x;
 	int	y;
@@ -25,9 +34,12 @@ void	test_init_textures(t_data *dta, int i)
 	if (dta->texture[i].tex == NULL)
 		ft_exit(dta, "Invalid textures !");
 	printf("Texture '%s' is loaded successfully.\n", dta->texture[i].path);
+	// dta->texture[i].tex = mlx_new_image(dta->mlx.mlx_ptr, dta->texwidth, dta->texheight);
+	dta->texture[i].addr = mlx_get_data_addr(dta->texture[i].tex, &dta->texture[i].bits, &dta->texture[i].l_length,
+								&dta->texture[i].endian);
 }
 
-void	test_rgb(t_data *dta)
+void	print_fc(t_data *dta)
 {
 	int	x;
 	int	y;
@@ -51,19 +63,6 @@ void	test_rgb(t_data *dta)
 	}
 }
 
-void	load_textures(t_data *dta)
-{
-	// int	i;
-//
-	// i = 0;
-	// while (i < 4)
-	// {
-	// 	test_init_textures(dta, i);
-	// 	i++;
-	// }
-	test_rgb(dta);
-}
-
 int	create_rgb(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
@@ -77,4 +76,15 @@ void	my_mlx_pixel_put(t_data *dta, int x, int y, int color)
 	// 	return ;
 	d = dta->mlx.addr + (y * dta->mlx.l_length + x * (dta->mlx.bits_p_pix / 8));
 	*(unsigned int *)d = color;
+}
+
+int	my_mlx_pixel_get(t_data *dta, int x, int y, int i)
+{
+	char	*color;
+
+	// if (y < 0 || y >= dta->height || x < 0 || x >= dta->width)
+	// 	return (0);
+	color = dta->texture[i].addr + (y * dta->texture[i].l_length + x * (dta->texture[i].bits / 8));
+	// printf("color apres-> %u\n", *(unsigned int *)color);
+	return (*(unsigned int *)color);
 }

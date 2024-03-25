@@ -40,9 +40,9 @@ void	ft_forward(t_data *dta, int key)
 {
 	// printf("forward : %d\n", key);
 	(void) key;
-	if (dta->real_map[(int)(dta->p.pos_x + dta->p.dir_x * dta->p.moveSpeed)][(int)(dta->p.pos_y)] == '0')
+	if (dta->real_map[(int)(dta->p.pos_x + dta->p.dir_x * dta->p.moveSpeed)][(int)(dta->p.pos_y)] != '1')
 		dta->p.pos_x += dta->p.dir_x * dta->p.moveSpeed;
-	if (dta->real_map[(int)(dta->p.pos_x)][(int)(dta->p.pos_y + dta->p.dir_y * dta->p.moveSpeed)] == '0')
+	if (dta->real_map[(int)(dta->p.pos_x)][(int)(dta->p.pos_y + dta->p.dir_y * dta->p.moveSpeed)] != '1')
 		dta->p.pos_y += dta->p.dir_y * dta->p.moveSpeed;
 }
 
@@ -50,9 +50,9 @@ void	ft_backward(t_data *dta, int key)
 {
 	// printf("backward : %d\n", key);
 	(void) key;
-	if (dta->real_map[(int)(dta->p.pos_x - dta->p.dir_x * dta->p.moveSpeed)][(int)(dta->p.pos_y)] == '0')
+	if (dta->real_map[(int)(dta->p.pos_x - dta->p.dir_x * dta->p.moveSpeed)][(int)(dta->p.pos_y)] != '1')
 		dta->p.pos_x -= dta->p.dir_x * dta->p.moveSpeed;
-	if (dta->real_map[(int)(dta->p.pos_x)][(int)(dta->p.pos_y - dta->p.dir_y * dta->p.moveSpeed)] == '0')
+	if (dta->real_map[(int)(dta->p.pos_x)][(int)(dta->p.pos_y - dta->p.dir_y * dta->p.moveSpeed)] != '1')
 		dta->p.pos_y -= dta->p.dir_y * dta->p.moveSpeed;
 }
 
@@ -60,11 +60,11 @@ void	ft_right(t_data *dta, int key)
 {
 	(void) key;
 	if (dta->real_map[(int)(dta->p.pos_x + dta->p.dir_y *
-				(dta->p.moveSpeed * 2))][(int)dta->p.pos_y] == '0')
+				(dta->p.moveSpeed * 2))][(int)dta->p.pos_y] != '1')
 		dta->p.pos_x += dta->p.dir_y * dta->p.moveSpeed;
 	if (dta->real_map[(int)dta->p.pos_x][(int)(dta->p.pos_y -
 				dta->p.dir_x *
-				(dta->p.moveSpeed * 2))] == '0')
+				(dta->p.moveSpeed * 2))] != '1')
 		dta->p.pos_y -= dta->p.dir_x * dta->p.moveSpeed;
 }
 
@@ -72,11 +72,11 @@ void	ft_left(t_data *dta, int key)
 {
 	(void) key;
 	if (dta->real_map[(int)(dta->p.pos_x - dta->p.dir_y *
-				(dta->p.moveSpeed * 2))][(int)dta->p.pos_y] == '0')
+				(dta->p.moveSpeed * 2))][(int)dta->p.pos_y] != '1')
 		dta->p.pos_x -= dta->p.dir_y * dta->p.moveSpeed;
 	if (dta->real_map[(int)dta->p.pos_x][(int)(dta->p.pos_y +
 				dta->p.dir_x *
-				(dta->p.moveSpeed * 2))] == '0')
+				(dta->p.moveSpeed * 2))] != '1')
 		dta->p.pos_y += dta->p.dir_x * dta->p.moveSpeed;
 }
 

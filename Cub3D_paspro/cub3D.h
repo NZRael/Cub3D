@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:19 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/22 09:21:23 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/25 14:51:37 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ typedef struct s_texture
 {
 	char	*path;
 	void	*tex;
+	char	*addr;
+	int		bits;
+	int		l_length;
+	int		endian;
 	int		width;
 	int		height;
 }	t_texture;
@@ -62,9 +66,9 @@ typedef struct s_mlx
 
 typedef struct s_data
 {
-	t_texture	texture[6];
-	t_color		color[2];
-	t_p	p;
+	t_texture	*texture;
+	t_color		*color;
+	t_p			p;
 	t_mlx		mlx;
 	int			nbr_n;
 	int			nbr_s;
@@ -84,7 +88,9 @@ typedef struct s_data
 	int			nbr_comma;
 	int			width;
 	int			height;
-	
+	int			texwidth;
+	int			texheight;
+
 	double		cameraX;
 	double		rayDirX;
 	double		rayDirY;
@@ -133,8 +139,10 @@ void	ft_rotate_left(t_data *dta, int key);
 
 int		create_rgb(int r, int g, int b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	test_init_textures(t_data *dta, int i);
-void	load_textures(t_data *dta);
+int		my_mlx_pixel_get(t_data *dta, int x, int y, int i);
+void	init_textures(t_data *dta);
+void	init_texture(t_data *dta, int i);
+void	print_fc(t_data *dta);
 void	init_p(t_data *dta);
 void	init_raycasting(t_data *dta);
 void	calcul_delta(t_data *dta);
@@ -142,8 +150,8 @@ void	calcul_side_dest(t_data *dta);
 void	perform_dda(t_data *dta);
 void	projected_dist(t_data *dta);
 
-void	print_wall(t_data *dta, int x, int color);
-int		test_texture(t_data *dta);
+void	print_wall(t_data *dta, int x);
+int		test_colors(t_data *dta);
 void	ft_take_map(t_data *dta);
 int		ft_count_take_map(t_data *dta);
 

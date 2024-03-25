@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:16 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/21 17:24:28 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/25 12:03:35 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 /////////////////////////
 	mlx_begin(&dta);
 	init_p(&dta);
-	// load_textures(&dta);
+	init_textures(&dta);
 	init_raycasting(&dta);
 
 	mlx_hook(dta.mlx.win_ptr, 2, 1L<<0, &keypress_esc, &dta);

@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:04:02 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/19 18:25:48 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/25 13:29:59 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void after_id(t_data *dta, int start)
 	int i;
 
 	i = 0;
-	while (dta->map[start][i] != '1' && dta->map[start][i] != '\0')
+	while (dta->map[start][i] && dta->map[start][i] != '1' && dta->map[start][i] != '\0')
 	{
 		if (dta->map[start][i] == ' ' || dta->map[start][i] == '\t')
 			i++;
@@ -57,14 +57,13 @@ int structuration(t_data *dta)
 		else if (dta->map[i][i2] == ' ' || dta->map[i][i2] == '\t')
 		{
 			stop++;
-			while (dta->map[i][i2] != '\0')
+			while (dta->map[i][i2] != '\0' && dta->map[i][i2])
 			{
 				if (!(dta->map[i][i2] == ' ' || dta->map[i][i2] == '\t'))
 					ft_exit(dta, "wrong line\n");
 				i2++;
 			}
 		}
-
 		i++;
 	}
 	after_id(dta, stop);
@@ -96,9 +95,9 @@ void verif_id(t_data *dta)
 
 char *init_path(char *id, int nbr)
 {
-	int start;
-	int end;
-	char *path;
+	int		start;
+	int		end;
+	char	*path;
 
 	end = nbr;
 	while (id[end] == ' ' || id[end] == '\t')
@@ -110,8 +109,9 @@ char *init_path(char *id, int nbr)
 	while (id[end] == ' ' || id[end] == '\t')
 		end--;
 	path = ft_substr(id, start, end - start + 1);
-	//verif si leak
-	return(path);
+	if (path == NULL)
+		exit(1);
+	return (path);
 }
 
 void verif_color(t_data *dta)
@@ -148,10 +148,14 @@ int	init_color(t_data *dta, char *id)
 	int		i2;
 	char	*nbr;
 
+	// printf("id : '%s'\n", id);
 	i2 = dta->i_color;
-	while (id[i2] >= '0' && id[i2] <= '9')
+	while (id[i2] >= '0' && id[i2] <= '9' && id[i2] != '\0')
 		i2++;
+	// printf("*(id)[%d] : %c\n", i2, id[i2]);
 	nbr = ft_substr(id, dta->i_color, i2 - dta->i_color + 1);
+	if (!nbr)
+		exit(1);
 	dta->i_color = i2;
 	while (id[dta->i_color] == ' ' || id[dta->i_color] == '\t' || id[dta->i_color] == ',')
 	{
@@ -162,13 +166,12 @@ int	init_color(t_data *dta, char *id)
 	i2 = dta->i_color;
 	if (dta->nbr_comma == 2 || dta->nbr_comma == 4)
 	{
-		while (id[i2] >= '0' && id[i2] <= '9')
+		while (id[i2] && id[i2] >= '0' && id[i2] <= '9')
 			i2++;
-		while (id[i2] != '\0')
+		while (id[i2] && id[i2] != '\0')
 		{
-			printf("caractere : %c\n",id[i2]);
 			if (!(id[i2] == ' ' || id[i2] == '\t' || id[i2] == ',' ))
-				ft_exit(dta, "trop de nombres , RVB\n");
+				ft_exit(dta, "trop de nombres , RVB");
 			i2++;
 		}
 	}
@@ -184,13 +187,17 @@ int first_parsing(t_data *dta)
 	noempty(dta, dta->C);
 	noempty(dta, dta->F);
 	verif_id(dta);
+	// for (int x = 0; dta->map[x] != NULL; x++)
+	// 	printf("dta->map[%d] = '%s'\n", x, dta->map[x]);
+	dta->texture = malloc(sizeof(t_texture) * 6);
 	dta->texture[0].path = init_path(dta->NO, 2);
 	dta->texture[1].path = init_path(dta->SO, 2);
 	dta->texture[2].path = init_path(dta->EA, 2);
 	dta->texture[3].path = init_path(dta->WE, 2);
 	dta->texture[4].path = init_path(dta->F, 1);
 	dta->texture[5].path = init_path(dta->C, 1);
-	//printf("dta->texture[0].path : '%s'\n", dta->texture[0].path);
+	// printf("dta->texture[4].path : '%s'\n", dta->texture[4].path);
+	dta->color = malloc(sizeof(t_color) * 2);
 	dta->color[0].red = init_color(dta, dta->texture[4].path);
 	dta->color[0].green = init_color(dta, dta->texture[4].path);
 	dta->color[0].blue = init_color(dta, dta->texture[4].path);
@@ -215,6 +222,8 @@ int all_parsing(t_data *dta)
 	ft_initialisation(dta);
 	structuration(dta);
 	first_parsing(dta);
+	// for (int x = 0; dta->map[x] != NULL; x++)
+	// 	printf("dta->map[%d] = '%s'\n", x, dta->map[x]);
 	parsing_map(dta);
 	return (0);
 }
