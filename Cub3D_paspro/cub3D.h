@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:19 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/25 14:51:37 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/26 15:24:13 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,16 @@ typedef struct s_data
 	char		*EA;
 	char		*F;
 	char		*C;
+	int			player_x;
+	int			player_y;
 	int			i_color;
 	int			nbr_comma;
 	int			width;
 	int			height;
 	int			texwidth;
 	int			texheight;
+	int			tex_x;
+	int			tex_y;
 
 	double		cameraX;
 	double		rayDirX;
@@ -129,7 +133,7 @@ void	ft_initialisation(t_data *dta);
 void	verif_char(t_data *dta, int i, int i2);
 int		parsing_map(t_data *dta);
 
-int		keypress_esc(int key, t_data *dta);
+int		keypress(int key, t_data *dta);
 void	ft_forward(t_data *dta, int key);
 void	ft_backward(t_data *dta, int key);
 void	ft_right(t_data *dta, int key);
@@ -142,15 +146,23 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		my_mlx_pixel_get(t_data *dta, int x, int y, int i);
 void	init_textures(t_data *dta);
 void	init_texture(t_data *dta, int i);
-void	print_fc(t_data *dta);
+void	print_fc(t_data *dta, int x);
 void	init_p(t_data *dta);
+void	init_player(t_data *dta);
+void    init_direction_w(t_data *dta);
+void    init_direction_e(t_data *dta);
+void    init_direction_s(t_data *dta);
+void    init_direction_n(t_data *dta);
 void	init_raycasting(t_data *dta);
+void	img_renderer(t_data *dta);
 void	calcul_delta(t_data *dta);
 void	calcul_side_dest(t_data *dta);
 void	perform_dda(t_data *dta);
 void	projected_dist(t_data *dta);
+void	test_texture(t_data *dta, int x);
 
-void	print_wall(t_data *dta, int x);
+void	calcul_texture(t_data *dta);
+int		choose_texture(t_data *dta);
 int		test_colors(t_data *dta);
 void	ft_take_map(t_data *dta);
 int		ft_count_take_map(t_data *dta);

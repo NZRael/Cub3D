@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fleriche <fleriche@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:45:38 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/20 19:03:13 by fleriche         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:27:54 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,7 @@ int first_parsing(t_data *dta)
     noempty(dta, dta->C);
     noempty(dta, dta->F);
     verif_id(dta);
+    //////////////////////////malloc la structure de base 'texture' modifier dans le point.h
     dta->texture[0].path = init_path(dta->NO, 2);
     dta->texture[1].path = init_path(dta->SO, 2);
     dta->texture[2].path = init_path(dta->EA, 2);
@@ -192,6 +193,7 @@ int first_parsing(t_data *dta)
     dta->texture[4].path = init_path(dta->F, 1);
     dta->texture[5].path = init_path(dta->C, 1);
     printf("%s\n", dta->texture[0].path);
+    //////////////////////////malloc la structure de base 'color' modifier dans le point.h
     dta->color[0].red = init_color(dta, dta->texture[4].path);
     dta->color[0].green = init_color(dta, dta->texture[4].path);
     dta->color[0].blue = init_color(dta, dta->texture[4].path);

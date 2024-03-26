@@ -15,7 +15,7 @@ OBJS = $(addprefix $(OBJ)/, ${SRCS:.c=.o})
 LIB_F = libft
 LIB = libft.a
 
-FLAGS = -Wall -Wextra -Werror -I .cub3D.h -fsanitize=address -g
+FLAGS = -Wall -Wextra -Werror -I .cub3D.h #-fsanitize=address -g
 FLAGS_MLX = -lmlx -L./minilibx-linux -lX11 -lXext -lm
 
 NAME = cub3D

@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-int	keypress_esc(int key, t_data *dta)
+int	keypress(int key, t_data *dta)
 {
 	// printf("%d\n", key);
 	if (key == 65307)
@@ -32,7 +32,6 @@ int	keypress_esc(int key, t_data *dta)
 		ft_rotate_right(dta, key);
 	if (key == 65361)//ROTATE GAUCHE //la direction et le plan de la caméra doivent pivoter
 		ft_rotate_left(dta, key);
-	init_raycasting(dta);
 	return (0);
 }
 
@@ -44,6 +43,7 @@ void	ft_forward(t_data *dta, int key)
 		dta->p.pos_x += dta->p.dir_x * dta->p.moveSpeed;
 	if (dta->real_map[(int)(dta->p.pos_x)][(int)(dta->p.pos_y + dta->p.dir_y * dta->p.moveSpeed)] != '1')
 		dta->p.pos_y += dta->p.dir_y * dta->p.moveSpeed;
+	img_renderer(dta);
 }
 
 void	ft_backward(t_data *dta, int key)
@@ -54,6 +54,7 @@ void	ft_backward(t_data *dta, int key)
 		dta->p.pos_x -= dta->p.dir_x * dta->p.moveSpeed;
 	if (dta->real_map[(int)(dta->p.pos_x)][(int)(dta->p.pos_y - dta->p.dir_y * dta->p.moveSpeed)] != '1')
 		dta->p.pos_y -= dta->p.dir_y * dta->p.moveSpeed;
+	img_renderer(dta);
 }
 
 void	ft_right(t_data *dta, int key)
@@ -66,6 +67,7 @@ void	ft_right(t_data *dta, int key)
 				dta->p.dir_x *
 				(dta->p.moveSpeed * 2))] != '1')
 		dta->p.pos_y -= dta->p.dir_x * dta->p.moveSpeed;
+	img_renderer(dta);
 }
 
 void	ft_left(t_data *dta, int key)
@@ -78,6 +80,7 @@ void	ft_left(t_data *dta, int key)
 				dta->p.dir_x *
 				(dta->p.moveSpeed * 2))] != '1')
 		dta->p.pos_y += dta->p.dir_x * dta->p.moveSpeed;
+	img_renderer(dta);
 }
 
 void	ft_rotate_right(t_data *dta, int key)
@@ -93,6 +96,7 @@ void	ft_rotate_right(t_data *dta, int key)
 	oldPlaneX = dta->p.plane_x;
 	dta->p.plane_x = dta->p.plane_x * cos(-(dta->p.rotSpeed)) - dta->p.plane_y * sin(-(dta->p.rotSpeed));
 	dta->p.plane_y = oldPlaneX * sin(-(dta->p.rotSpeed)) + dta->p.plane_y * cos(-(dta->p.rotSpeed));
+	img_renderer(dta);
 }
 
 void	ft_rotate_left(t_data *dta, int key)
@@ -108,4 +112,5 @@ void	ft_rotate_left(t_data *dta, int key)
 	oldPlaneX = dta->p.plane_x;
 	dta->p.plane_x = dta->p.plane_x * cos(dta->p.rotSpeed) - dta->p.plane_y * sin(dta->p.rotSpeed);
 	dta->p.plane_y = oldPlaneX * sin(dta->p.rotSpeed) + dta->p.plane_y * cos(dta->p.rotSpeed);
+	img_renderer(dta);
 }

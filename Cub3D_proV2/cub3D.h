@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fleriche <fleriche@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:19 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/21 14:08:37 by fleriche         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:23:44 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ typedef struct s_data{
     // dta->nbr_s;
     // dta->nbr_e;
     // dta->nbr_w
-    t_texture	texture[6];
-	t_color	color[2];
+    t_texture	texture[6];/////
+	t_color	    color[2];/////
     int	    nbr_n;
     int     nbr_s;
     int	    nbr_e;

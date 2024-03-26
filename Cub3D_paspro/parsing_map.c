@@ -6,29 +6,11 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:08:30 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/25 12:34:07 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/26 14:13:58 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-// int parsingcar(t_data *dta)
-// {
-//     int i;
-
-//     i = 0;
-//     while (dta->map_str[i] != '\0')
-//     {
-//         if (dta->map_str[i] != '0' && dta->map_str[i] != '1' && dta->map_str[i] != 'N' && dta->map_str[i] != 'S' && dta->map_str[i] != 'E' && dta->map_str[i] != 'W' && dta->map_str[i] != '\n' && dta->map_str[i] != ' '&& dta->map_str[i] != '\t')
-//         {
-//             printf("non\n");
-//             return 1;
-//         }
-//         i++;
-//     }
-//     printf("oui\n");
-//     return 0;
-// }
 
 void verif_char(t_data *dta, int i, int i2)
 {
@@ -36,6 +18,12 @@ void verif_char(t_data *dta, int i, int i2)
 				|| dta->map[i][i2] == 'S' || dta->map[i][i2] == 'E' || dta->map[i][i2] == 'W' 
 				|| dta->map[i][i2] == ' ' || dta->map[i][i2] == '\t'))
 		ft_exit(dta, "map pas bon\n");
+	if (dta->map[i][i2] == 'N' || dta->map[i][i2] == 'S' || dta->map[i][i2] == 'E' || dta->map[i][i2] == 'W')
+	{
+		dta->player_x = i;
+		dta->player_y = i2;
+		// printf("'%c'\n", dta->map[dta->player_x][dta->player_y]);
+	}
 }
 
 void verif_doublon(t_data *dta)

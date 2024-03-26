@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fleriche <fleriche@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:45:47 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/12 16:50:48 by fleriche         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:22:22 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	read_map(char *map, t_data *dta)
 	int		fd;
 	char	*buffer;
 	ssize_t	nread;
-
+/////////////////////////////////
 	nread = 1;
 	buffer = malloc(sizeof(char) * 1024);
 	fd = open(map, O_RDONLY);

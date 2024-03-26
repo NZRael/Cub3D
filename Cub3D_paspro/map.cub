@@ -1,9 +1,9 @@
 WE        			./textures/mossy.xpm
-NO ./textures/eagle.xpm
-SO ./textures/red_brick.xpm
+NO ./textures/purplestone.xpm
+SO ./textures/eagle.xpm
+EA ./textures/bluestone.xpm
 F 190, 150, 110 
 C 70,		 190,				 255
-EA ./textures/mossy.xpm
 
 111111111111111111111111
 100000000000000000000001

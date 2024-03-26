@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:16 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/25 12:03:35 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/26 15:24:31 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ void	mlx_begin(t_data *dta)
 	return ;
 }
 
+void	init_p(t_data *dta)
+{
+	init_player(dta);
+	dta->p.moveSpeed = 0.15;
+	dta->p.rotSpeed = 0.07;
+	dta->texheight = 64;
+	dta->texwidth = 64;
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	dta;
@@ -31,17 +40,17 @@ int	main(int argc, char **argv)
 	check_args(argc, argv, &dta);
 	read_map(argv[1], &dta);
 	all_parsing(&dta);
-/////////////////////////
+	/////////////////////////
 	ft_take_map(&dta);
 	// for (int x = 0; dta.real_map[x] != NULL; x++)
 	// 	printf("dta->real_map[%d] = '%s'\n", x, dta.real_map[x]);
-/////////////////////////
+	/////////////////////////
 	mlx_begin(&dta);
 	init_p(&dta);
 	init_textures(&dta);
-	init_raycasting(&dta);
+	img_renderer(&dta);
 
-	mlx_hook(dta.mlx.win_ptr, 2, 1L<<0, &keypress_esc, &dta);
+	mlx_hook(dta.mlx.win_ptr, 2, 1L<<0, &keypress, &dta);
 	mlx_hook(dta.mlx.win_ptr, 17, 1L<<17, &ft_destroy_wind, NULL);
 	mlx_loop(dta.mlx.mlx_ptr);
 	return (0);

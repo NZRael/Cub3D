@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:45:47 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/25 15:08:03 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/26 14:39:12 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	read_map(char *map, t_data *dta)
 	ssize_t	nread;
 ////////////////////////////// FLORIAN TA SOEUR REFAIT MOI CA
 	nread = 1;
-	buffer = malloc(sizeof(char) * 823);
+	buffer = malloc(sizeof(char) * 829);
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 		ft_exit(dta, "Error opening file");
-	nread = read(fd, buffer, 823);
+	nread = read(fd, buffer, 829);
 	if (nread < -1)
 		ft_exit(dta, "Error opening file");
 	dta->map_str = ft_strdup(buffer);
