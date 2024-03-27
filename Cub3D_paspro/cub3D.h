@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:19 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/26 15:24:13 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/27 14:34:48 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ typedef struct s_p
 	double	plane_x;
 	double	plane_y;
 	double	moveSpeed;
-	double	rotSpeed;
+	double	rot_s;
 }	t_p;
 
 typedef struct s_mlx
 {
 	void		*mlx_ptr;
-	void		*win_ptr;
+	void		*win;
 	void		*img;
 	char		*addr;
 	int			bits_p_pix;
@@ -123,7 +123,8 @@ void	verif_doublon(t_data *dta);
 void	verif_color(t_data *dta);
 int		init_color(t_data *dta, char *id);
 void	read_map(char *map, t_data *dta);
-//int     parsingcar(t_data *dta);
+void	ft_free_tab_texture(t_data *dta);
+void	ft_free_tab_color(t_data *dta);
 int		structuration(t_data *dta);
 int		all_parsing(t_data *dta);
 void	ft_exit(t_data *dta, char *str);
@@ -149,9 +150,9 @@ void	init_texture(t_data *dta, int i);
 void	print_fc(t_data *dta, int x);
 void	init_p(t_data *dta);
 void	init_player(t_data *dta);
-void    init_direction_w(t_data *dta);
-void    init_direction_e(t_data *dta);
-void    init_direction_s(t_data *dta);
+void	init_direction_w(t_data *dta);
+void	init_direction_e(t_data *dta);
+void	init_direction_s(t_data *dta);
 void    init_direction_n(t_data *dta);
 void	init_raycasting(t_data *dta);
 void	img_renderer(t_data *dta);
@@ -166,6 +167,5 @@ int		choose_texture(t_data *dta);
 int		test_colors(t_data *dta);
 void	ft_take_map(t_data *dta);
 int		ft_count_take_map(t_data *dta);
-
 
 #endif

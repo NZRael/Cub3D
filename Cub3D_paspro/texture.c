@@ -29,13 +29,14 @@ void	init_texture(t_data *dta, int i)
 	if (i < 0 || i >= 6)
 		ft_exit(dta, "Index de texture invalide.");
 	printf("Loading texture ...\n");
-	dta->texture[i].tex = mlx_xpm_file_to_image(dta->mlx.mlx_ptr,
+	dta->texture[i].tex = mlx_xpm_file_to_image(dta->mlx.mlx_ptr, \
 			dta->texture[i].path, &x, &y);
 	if (dta->texture[i].tex == NULL)
 		ft_exit(dta, "Invalid textures !");
 	printf("Texture '%s' is loaded successfully.\n", dta->texture[i].path);
-	dta->texture[i].addr = mlx_get_data_addr(dta->texture[i].tex, &dta->texture[i].bits, &dta->texture[i].l_length,
-								&dta->texture[i].endian);
+	dta->texture[i].addr = mlx_get_data_addr(dta->texture[i].tex, \
+			&dta->texture[i].bits, &dta->texture[i].l_length, \
+			&dta->texture[i].endian);
 }
 
 void	print_fc(t_data *dta, int x)
@@ -45,37 +46,16 @@ void	print_fc(t_data *dta, int x)
 	y = 0;
 	while (y < dta->drawStart)
 	{
-			my_mlx_pixel_put(dta, x, y, create_rgb(dta->color[1].red,
+		my_mlx_pixel_put(dta, x, y, create_rgb(dta->color[1].red, \
 				dta->color[1].green, dta->color[1].blue));
-				y++;
+		y++;
 	}
 	y = dta->drawEnd;
 	while (y < dta->height)
 	{
-		my_mlx_pixel_put(dta, x, y, create_rgb(dta->color[0].red,
-			dta->color[0].green, dta->color[0].blue));
+		my_mlx_pixel_put(dta, x, y, create_rgb(dta->color[0].red, \
+				dta->color[0].green, dta->color[0].blue));
 		y++;
 	}
 	return ;
-}
-
-int	create_rgb(int r, int g, int b)
-{
-	return (r << 16 | g << 8 | b);
-}
-
-void	my_mlx_pixel_put(t_data *dta, int x, int y, int color)
-{
-	char	*d;
-
-	d = dta->mlx.addr + (y * dta->mlx.l_length + x * (dta->mlx.bits_p_pix / 8));
-	*(unsigned int *)d = color;
-}
-
-int	my_mlx_pixel_get(t_data *dta, int x, int y, int i)
-{
-	char	*color;
-
-	color = dta->texture[i].addr + (y * dta->texture[i].l_length + x * (dta->texture[i].bits / 8));
-	return (*(unsigned int *)color);
 }
