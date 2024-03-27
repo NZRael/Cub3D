@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:04:02 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/27 16:51:21 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/27 18:39:55 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	after_id(t_data *dta, int start)
 	int	i;
 
 	i = 0;
+	if (!dta->map[start])
+		ft_exit(dta, "no map\n");
 	while (dta->map[start][i] && dta->map[start][i] != '1' \
 			&& dta->map[start][i] != '\0')
 	{
@@ -208,8 +210,6 @@ int	first_parsing(t_data *dta)
 	dta->texture[4].path = init_path(dta->F, 1);
 	dta->texture[5].path = init_path(dta->C, 1);
 	// printf("dta->texture[4].path : '%s'\n", dta->texture[4].path);
-	// dta->color = malloc(sizeof(t_color) * 2);
-	// ft_bzero(dta->color, 2);
 	dta->color[0].red = init_color(dta, dta->texture[4].path);
 	dta->color[0].green = init_color(dta, dta->texture[4].path);
 	dta->color[0].blue = init_color(dta, dta->texture[4].path);
@@ -224,8 +224,6 @@ int	first_parsing(t_data *dta)
 	// printf("dta->color[1].green : '%d'\n", dta->color[1].green);
 	// printf("dta->color[1].blue : '%d'\n", dta->color[1].blue);
 	verif_color(dta);
-	//printf("%s\n", dta->texture[4].path);
-	//dta.C_tex->C_path = init_path(dta, dta->C, 1);
 	return (0);
 }
 
