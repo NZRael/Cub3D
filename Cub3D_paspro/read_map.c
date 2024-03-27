@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:45:47 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/27 17:24:55 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/27 17:36:15 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,27 @@ char	*ft_strjoinfree2(char *stock, char *tmp)
 void	read_map(char *map, t_data *dta)
 {
 	int		file;
-	char	*tab;
-	char	*tab2;
+	char	*line;
+	char	*line2;
 	int		i;
 
 	i = 0;
 	file = open(map, O_RDONLY, 0777);
-	tab = get_next_line(file);
+	line = get_next_line(file);
 	while (1)
 	{
 		i++;
-		tab2 = get_next_line(file);
-		if (!tab2)
+		line2 = get_next_line(file);
+		if (!line2)
 			break ;
-		tab = ft_strjoinfree2(tab, tab2);
-		free(tab2);
+		line = ft_strjoinfree2(line, line2);
+		free(line2);
 	}
-	if (tab == NULL)
-		return ;
-	dta->map = ft_split(tab, '\n');
-	free(tab);
+	if (line == NULL)
+		ft_exit(dta, "line NULL on file");
+	dta->map = ft_split(line, '\n');
+	free(line);
+	if (i == 0)
+		ft_exit(dta, "Nothing in the file");
 	return ;
 }
