@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:04:02 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/27 15:09:07 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/27 16:51:21 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,14 +153,15 @@ void	verif_color(t_data *d)
 int	init_color(t_data *dta, char *id)
 {
 	int		i2;
-	char	*nbr;
+	int		nombre;
+	char	*nbr;	
 
 	i2 = dta->i_color;
 	while (id[i2] >= '0' && id[i2] <= '9' && id[i2] != '\0')
 		i2++;
 	nbr = ft_substr(id, dta->i_color, i2 - dta->i_color + 1);
 	if (!nbr)
-		exit(1);
+		ft_exit(dta, "pb malloc");
 	dta->i_color = i2;
 	while (id[dta->i_color] == ' ' || id[dta->i_color] == '\t' \
 	|| id[dta->i_color] == ',')
@@ -177,11 +178,16 @@ int	init_color(t_data *dta, char *id)
 		while (id[i2] && id[i2] != '\0')
 		{
 			if (!(id[i2] == ' ' || id[i2] == '\t' || id[i2] == ',' ))
+			{
+				free(nbr);
 				ft_exit(dta, "trop de nombres , RVB");
+			}
 			i2++;
 		}
 	}
-	return (ft_atoi(nbr));
+	nombre = ft_atoi(nbr);
+	free(nbr);
+	return (nombre);
 }
 
 
@@ -202,7 +208,8 @@ int	first_parsing(t_data *dta)
 	dta->texture[4].path = init_path(dta->F, 1);
 	dta->texture[5].path = init_path(dta->C, 1);
 	// printf("dta->texture[4].path : '%s'\n", dta->texture[4].path);
-	dta->color = malloc(sizeof(t_color) * 2);
+	// dta->color = malloc(sizeof(t_color) * 2);
+	// ft_bzero(dta->color, 2);
 	dta->color[0].red = init_color(dta, dta->texture[4].path);
 	dta->color[0].green = init_color(dta, dta->texture[4].path);
 	dta->color[0].blue = init_color(dta, dta->texture[4].path);

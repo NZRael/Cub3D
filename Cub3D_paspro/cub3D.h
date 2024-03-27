@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:19 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/27 14:34:48 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/27 17:19:03 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "minilibx-linux/mlx.h"
+# include "get_next_line.h"
 # include "libft/libft.h"
 # include <fcntl.h>
 # include <stdlib.h>
@@ -67,7 +68,7 @@ typedef struct s_mlx
 typedef struct s_data
 {
 	t_texture	*texture;
-	t_color		*color;
+	t_color		color[2];
 	t_p			p;
 	t_mlx		mlx;
 	int			nbr_n;
@@ -119,6 +120,7 @@ void	mlx_begin(t_data *dta);
 void	ft_check_mapfile(t_data *dta, char *mapfile);
 void	check_args(int argc, char **argv, t_data *dta);
 
+char	*ft_strjoinfree2(char *stock, char *tmp);
 void	verif_doublon(t_data *dta);
 void	verif_color(t_data *dta);
 int		init_color(t_data *dta, char *id);

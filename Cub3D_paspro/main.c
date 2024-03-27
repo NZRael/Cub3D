@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:16 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/27 14:36:47 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/27 17:27:36 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,7 @@ int	main(int argc, char **argv)
 	check_args(argc, argv, &dta);
 	read_map(argv[1], &dta);
 	all_parsing(&dta);
-	/////////////////////////
 	ft_take_map(&dta);
-	// for (int x = 0; dta.real_map[x] != NULL; x++)
-	// 	printf("dta->real_map[%d] = '%s'\n", x, dta.real_map[x]);
-	/////////////////////////
 	mlx_begin(&dta);
 	init_p(&dta);
 	init_textures(&dta);

@@ -9,7 +9,9 @@ SRCS = main.c read_map.c \
 		keys_left_and_right.c \
 		texture.c draw.c check_args.c \
 		raycast_init.c ft_take_map.c \
-		raycast2.c raycast_calcul.c
+		raycast2.c raycast_calcul.c \
+		get_next_line.c \
+		get_next_line_utils.c
 
 OBJ = ./objs
 OBJS = $(addprefix $(OBJ)/, ${SRCS:.c=.o})
@@ -17,7 +19,7 @@ OBJS = $(addprefix $(OBJ)/, ${SRCS:.c=.o})
 LIB_F = libft
 LIB = libft.a
 
-FLAGS = -Wall -Wextra -Werror -I .cub3D.h #-fsanitize=address -g
+FLAGS = -Wall -Wextra -Werror -I .cub3D.h -g #-fsanitize=address 
 FLAGS_MLX = -lmlx -L./minilibx-linux -lX11 -lXext -lm
 
 NAME = cub3D
