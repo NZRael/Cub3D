@@ -6,49 +6,50 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:04:02 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/25 13:29:59 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/27 15:09:07 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void after_id(t_data *dta, int start)
+void	after_id(t_data *dta, int start)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (dta->map[start][i] && dta->map[start][i] != '1' && dta->map[start][i] != '\0')
+	while (dta->map[start][i] && dta->map[start][i] != '1' \
+			&& dta->map[start][i] != '\0')
 	{
 		if (dta->map[start][i] == ' ' || dta->map[start][i] == '\t')
 			i++;
 		else if (dta->map[start][i] == '\0')
 			start++;
 		else if (dta->map[start][i] == '1')
-			break;
+			break ;
 		else
 			ft_exit(dta, "y'a une couille entre les id et la map\n");
 	}
 	dta->start_map = start;
 }
 
-int structuration(t_data *dta)
+int	structuration(t_data *dta)
 {
-	int i;
-	int i2;
-	int stop;
+	int	i;
+	int	i2;
+	int	stop;
 
 	i = 0;
 	stop = 6;
 	while (i < stop)
 	{
 		i2 = 0;
-		if (dta->map[i][i2] == 'N' && dta->map[i][i2+1] == 'O')
+		if (dta->map[i][i2] == 'N' && dta->map[i][i2 + 1] == 'O')
 			dta->NO = dta->map[i];
-		else if (dta->map[i][i2] == 'W' && dta->map[i][i2+1] == 'E')
+		else if (dta->map[i][i2] == 'W' && dta->map[i][i2 + 1] == 'E')
 			dta->WE = dta->map[i];
-		else if (dta->map[i][i2] == 'S' && dta->map[i][i2+1] == 'O')
+		else if (dta->map[i][i2] == 'S' && dta->map[i][i2 + 1] == 'O')
 			dta->SO = dta->map[i];
-		else if (dta->map[i][i2] == 'E' && dta->map[i][i2+1] == 'A')
+		else if (dta->map[i][i2] == 'E' && dta->map[i][i2 + 1] == 'A')
 			dta->EA = dta->map[i];
 		else if (dta->map[i][i2] == 'C')
 			dta->C = dta->map[i];
@@ -67,17 +68,17 @@ int structuration(t_data *dta)
 		i++;
 	}
 	after_id(dta, stop);
-	return (0); 
+	return (0);
 }
 
-void noempty(t_data *dta, char *id)
+void	noempty(t_data *dta, char *id)
 {
 	if (id == NULL)
 		ft_exit(dta, "there is 2 same id");
 }
 
 //12/12/2023
-void verif_id(t_data *dta)
+void	verif_id(t_data *dta)
 {
 	if (dta->NO[2] != ' ' && dta->NO[2] != '\t')
 		ft_exit(dta, "id not good, or colle au path");
@@ -93,7 +94,7 @@ void verif_id(t_data *dta)
 		ft_exit(dta, "id not good, or colle au path");
 }
 
-char *init_path(char *id, int nbr)
+char	*init_path(char *id, int nbr)
 {
 	int		start;
 	int		end;
@@ -114,32 +115,38 @@ char *init_path(char *id, int nbr)
 	return (path);
 }
 
-void verif_color(t_data *dta)
+void	verif_color(t_data *d)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (dta->texture[4].path[i] != '\0')
+	while (d->texture[4].path[i] != '\0')
 	{
-		if (!((dta->texture[4].path[i] == ' ' || dta->texture[4].path[i] == '\t' || dta->texture[4].path[i] == ',' ) || (dta->texture[4].path[i] >= '0' && dta->texture[4].path[i] <= '9')))
-			ft_exit(dta, "nique bien ta mere\n");
+		if (!((d->texture[4].path[i] == ' ' || d->texture[4].path[i] == '\t' \
+				|| d->texture[4].path[i] == ',' ) \
+				|| (d->texture[4].path[i] >= '0' \
+				&& d->texture[4].path[i] <= '9')))
+			ft_exit(d, "nique bien ta mere\n");
 		i++;
 	}
 	i = 0;
-	while (dta->texture[5].path[i] != '\0')
+	while (d->texture[5].path[i] != '\0')
 	{
-		if (!((dta->texture[5].path[i] == ' ' || dta->texture[5].path[i] == '\t' || dta->texture[5].path[i] == ',' ) || (dta->texture[5].path[i] >= '0' && dta->texture[5].path[i] <= '9')))
-			ft_exit(dta, "nique bien ta mere\n");
+		if (!((d->texture[5].path[i] == ' ' || d->texture[5].path[i] == '\t' \
+		|| d->texture[5].path[i] == ',' ) \
+		|| (d->texture[5].path[i] >= '0' \
+		&& d->texture[5].path[i] <= '9')))
+			ft_exit(d, "nique bien ta mere\n");
 		i++;
 	}
-	if (dta->color[0].red < 0 || dta->color[0].green < 0 || dta->color[0].blue < 0
-		|| dta->color[1].red < 0 || dta->color[1].green < 0 || dta->color[1].blue < 0)
-		ft_exit(dta, "color pas bon mon copainnn\n");
-	if (dta->nbr_comma != 4)
-		ft_exit(dta, "pas bon, trop de virgules\n");
-	if (dta->color[0].red > 255 || dta->color[0].green > 255 || dta->color[0].blue > 255
-		|| dta->color[1].red > 255 || dta->color[1].green > 255 || dta->color[1].blue > 255)
-		ft_exit(dta, "wsh t un ouf a mettre des nombres comme ca gros\n");
+	if (d->color[0].red < 0 || d->color[0].green < 0 || d->color[0].blue < 0
+		|| d->color[1].red < 0 || d->color[1].green < 0 || d->color[1].blue < 0)
+		ft_exit(d, "color pas bon mon copainnn\n");
+	if (d->nbr_comma != 4)
+		ft_exit(d, "pas bon, trop de virgules\n");
+	if (d->color[0].red > 255 || d->color[0].green > 255 || d->color[0].blue > 255
+		|| d->color[1].red > 255 || d->color[1].green > 255 || d->color[1].blue > 255)
+		ft_exit(d, "wsh t un ouf a mettre des nombres comme ca gros\n");
 }
 
 //13/12/2023
@@ -148,16 +155,15 @@ int	init_color(t_data *dta, char *id)
 	int		i2;
 	char	*nbr;
 
-	// printf("id : '%s'\n", id);
 	i2 = dta->i_color;
 	while (id[i2] >= '0' && id[i2] <= '9' && id[i2] != '\0')
 		i2++;
-	// printf("*(id)[%d] : %c\n", i2, id[i2]);
 	nbr = ft_substr(id, dta->i_color, i2 - dta->i_color + 1);
 	if (!nbr)
 		exit(1);
 	dta->i_color = i2;
-	while (id[dta->i_color] == ' ' || id[dta->i_color] == '\t' || id[dta->i_color] == ',')
+	while (id[dta->i_color] == ' ' || id[dta->i_color] == '\t' \
+	|| id[dta->i_color] == ',')
 	{
 		if (id[dta->i_color] == ',')
 			dta->nbr_comma++;
@@ -177,8 +183,9 @@ int	init_color(t_data *dta, char *id)
 	}
 	return (ft_atoi(nbr));
 }
-//dta->texture[4].path
-int first_parsing(t_data *dta)
+
+
+int	first_parsing(t_data *dta)
 {
 	noempty(dta, dta->NO);
 	noempty(dta, dta->EA);
@@ -187,8 +194,6 @@ int first_parsing(t_data *dta)
 	noempty(dta, dta->C);
 	noempty(dta, dta->F);
 	verif_id(dta);
-	// for (int x = 0; dta->map[x] != NULL; x++)
-	// 	printf("dta->map[%d] = '%s'\n", x, dta->map[x]);
 	dta->texture = malloc(sizeof(t_texture) * 6);
 	dta->texture[0].path = init_path(dta->NO, 2);
 	dta->texture[1].path = init_path(dta->SO, 2);
@@ -217,7 +222,7 @@ int first_parsing(t_data *dta)
 	return (0);
 }
 
-int all_parsing(t_data *dta)
+int	all_parsing(t_data *dta)
 {
 	ft_initialisation(dta);
 	structuration(dta);
