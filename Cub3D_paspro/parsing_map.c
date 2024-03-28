@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:08:30 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/28 17:24:02 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/28 17:44:32 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	nbr_char(t_data *dta, int i, int i2)
 	if (dta->map[i][i2] == 'E')
 		dta->nbr_e++;
 }
+
 void	player_extend(t_data *dta)
 {
 	int	i;
@@ -93,6 +94,7 @@ void	player_extend(t_data *dta)
 	}
 	verif_holes(dta);
 }
+
 void	verif_holes(t_data *dta)
 {
 	int	i;
@@ -115,6 +117,7 @@ void	verif_holes(t_data *dta)
 		i++;
 	}
 }
+
 int	parsing_map(t_data *dta)
 {
 	int	i;
