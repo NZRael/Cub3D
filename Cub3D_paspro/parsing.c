@@ -6,13 +6,13 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:45:38 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/28 17:29:14 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/28 17:43:00 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int all_parsing(t_data *dta)
+int	all_parsing(t_data *dta)
 {
 	ft_initialisation(dta);
 	structuration(dta);
@@ -38,9 +38,9 @@ void	ft_initialisation(t_data *dta)
 	dta->psartek = 0;
 }
 
-void after_id(t_data *dta, int start)
+void	after_id(t_data *dta, int start)
 {
-	int i;
+	int	i;
 
 	i = 0;
 		while (dta->map[start][i] != '1' && dta->map[start][i] != '\0')

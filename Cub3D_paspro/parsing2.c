@@ -6,13 +6,13 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:29:30 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/28 17:30:22 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/28 17:42:33 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void noempty(t_data *dta, char *id)
+void	noempty(t_data *dta, char *id)
 {
 	if (id == NULL)
 		ft_exit(dta, "there is 2 same id");
@@ -44,9 +44,9 @@ char	*init_path(t_data *dta, char *tex_path, int nbr)
 	return (tmp_path);
 }
 
-void verif_color(t_data *dta)
+void	verif_color(t_data *dta)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (dta->texture[4].path[i] != '\0')
@@ -63,20 +63,20 @@ void verif_color(t_data *dta)
 		i++;
 	}
 	if (dta->color[0].red == 0 || dta->color[0].green == 0 || dta->color[0].blue == 0 ||
-	dta->color[1].red == 0 || dta->color[1].green == 0 || dta->color[1].blue == 0)
+		dta->color[1].red == 0 || dta->color[1].green == 0 || dta->color[1].blue == 0)
 		ft_exit(dta, "color pas bon mon copainnn\n");
 	if (dta->nbr_comma != 4)
 		ft_exit(dta, "pas bon, trop de virgules\n");
 	if (dta->color[0].red > 255 || dta->color[0].green > 255 || dta->color[0].blue > 255 ||
-	dta->color[1].red > 255 || dta->color[1].green > 255 || dta->color[1].blue > 255)
+		dta->color[1].red > 255 || dta->color[1].green > 255 || dta->color[1].blue > 255)
 		ft_exit(dta, "wsh t un ouf a mettre des nombres comme ca gros\n");
 }
 
-int init_color(t_data *dta, char *id)
+int	init_color(t_data *dta, char *id)
 {
-	int     i2;
-	int     nombre;
-	char    *nbr;
+	int		i2;
+	int		nombre;
+	char	*nbr;
 
 	i2 = dta->i_color;
 	while (id[i2] >= '0' && id[i2] <= '9')
