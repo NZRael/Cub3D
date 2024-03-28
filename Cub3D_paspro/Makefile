@@ -4,7 +4,7 @@ GRAY='\033[2;37m'
 CURSIVE='\033[3m'
 
 SRCS = main.c read_map.c \
-		parsing.c error.c \
+		parsing.c parsing2.c error.c \
 		parsing_map.c keys.c \
 		keys_left_and_right.c \
 		texture.c draw.c check_args.c \
@@ -20,7 +20,7 @@ LIB_F = libft
 LIB = libft.a
 
 FLAGS = -Wall -Wextra -Werror -I .cub3D.h -g #-fsanitize=address 
-FLAGS_MLX = -lmlx -L./minilibx-linux -lX11 -lXext -lm
+FLAGS_MLX = -lmlx -L ./minilibx-linux -lX11 -lXext -lm
 
 NAME = cub3D
 

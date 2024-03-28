@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 12:58:44 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/27 14:40:54 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/28 14:45:35 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ void	test_texture(t_data *dta, int x)
 		dta->tex_y = (int)texpos & (dta->texheight - 1);
 		texpos += step;
 		color = choose_texture(dta);
-		if (dta->side == 1)
-			color = (color >> 1) & 8355711;
 		my_mlx_pixel_put(dta, x, y, color);
 		y++;
 	}

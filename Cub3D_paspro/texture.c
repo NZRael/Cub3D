@@ -28,7 +28,7 @@ void	init_texture(t_data *dta, int i)
 
 	if (i < 0 || i >= 6)
 		ft_exit(dta, "Index de texture invalide.");
-	printf("Loading texture ...\n");
+	printf("Loading texture '%s'...\n", dta->texture[i].path);
 	dta->texture[i].tex = mlx_xpm_file_to_image(dta->mlx.mlx_ptr, \
 			dta->texture[i].path, &x, &y);
 	if (dta->texture[i].tex == NULL)

@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:59:35 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/27 14:58:21 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/28 16:25:09 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_take_map(t_data *dta)
 	size_t		y;
 	int			i;
 
-	x = 0;
+	x = dta->psartek;
 	i = 0;
 	dta->real_map = malloc(sizeof(char *) * (ft_count_take_map(dta) + 1));
 	while (dta->map[x] != NULL)
@@ -32,10 +32,12 @@ void	ft_take_map(t_data *dta)
 			while (dta->map[x] != NULL)
 			{
 				dta->real_map[i] = ft_strdup(dta->map[x]);
+				// printf("'%s'\n", dta->real_map[i]);
 				i++;
 				x++;
 			}
 			dta->real_map[i] = NULL;
+			// printf("'%s'\n", dta->real_map[i]);
 			break ;
 		}
 		x++;
