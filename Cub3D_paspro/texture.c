@@ -44,13 +44,13 @@ void	print_fc(t_data *dta, int x)
 	int	y;
 
 	y = 0;
-	while (y < dta->drawStart)
+	while (y < dta->draw_start)
 	{
 		my_mlx_pixel_put(dta, x, y, create_rgb(dta->color[1].red, \
 				dta->color[1].green, dta->color[1].blue));
 		y++;
 	}
-	y = dta->drawEnd;
+	y = dta->draw_end;
 	while (y < dta->height)
 	{
 		my_mlx_pixel_put(dta, x, y, create_rgb(dta->color[0].red, \

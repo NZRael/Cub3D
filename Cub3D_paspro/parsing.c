@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:45:38 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/29 10:13:27 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/29 11:04:04 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int	all_parsing(t_data *dta)
 
 void	ft_initialisation(t_data *dta)
 {
-	dta->NO = NULL;
-	dta->SO = NULL;
-	dta->EA = NULL;
-	dta->WE = NULL;
-	dta->C = NULL;
-	dta->F = NULL;
+	dta->no_line = NULL;
+	dta->so_line = NULL;
+	dta->ea_line = NULL;
+	dta->we_line = NULL;
+	dta->c_line = NULL;
+	dta->f_line = NULL;
 	dta->i_color = 0;
 	dta->nbr_comma = 0;
 	dta->nbr_n = 0;
@@ -74,20 +74,20 @@ int	structuration(t_data *dta)
 			i2++;
 		if (dta->map[i][i2] == 'N' && dta->map[i][i2 + 1] \
 				&& dta->map[i][i2 + 1] == 'O')
-			dta->NO = dta->map[i];
+			dta->no_line = dta->map[i];
 		if (dta->map[i][i2] == 'W' && dta->map[i][i2 + 1] \
 				&& dta->map[i][i2 + 1] == 'E')
-			dta->WE = dta->map[i];
+			dta->we_line = dta->map[i];
 		if (dta->map[i][i2] == 'S' && dta->map[i][i2 + 1] \
 				&& dta->map[i][i2 + 1] == 'O')
-			dta->SO = dta->map[i];
+			dta->so_line = dta->map[i];
 		if (dta->map[i][i2] == 'E' && dta->map[i][i2 + 1] \
 				&& dta->map[i][i2 + 1] == 'A')
-			dta->EA = dta->map[i];
+			dta->ea_line = dta->map[i];
 		if (dta->map[i][i2] == 'C')
-			dta->C = dta->map[i];
+			dta->c_line = dta->map[i];
 		if (dta->map[i][i2] == 'F')
-			dta->F = dta->map[i];
+			dta->f_line = dta->map[i];
 		if (dta->map[i][i2] == '\0')
 			stop++;
 		i++;

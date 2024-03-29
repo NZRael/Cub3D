@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:08:30 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/28 17:44:32 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/29 11:04:24 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int	parsing_map(t_data *dta)
 	i = dta->start_map;
 	while (dta->map[i])
 	{
+		if (dta->map[i])
 		i2 = 0;
 		while (dta->map[i][i2] != '\0')
 		{
@@ -145,3 +146,12 @@ int	parsing_map(t_data *dta)
 	// def_just_map(dta);
 	return (0);
 }
+
+// void	def_just_map(t_data *dta)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = dta->start_map;
+
+// }

@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:31:34 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/27 14:36:13 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/29 11:03:35 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	ft_right(t_data *dta, int key)
 {
 	(void) key;
 	if (dta->real_map[(int)(dta->p.pos_x + dta->p.dir_y \
-			* (dta->p.moveSpeed * 2))][(int)dta->p.pos_y] != '1')
-		dta->p.pos_x += dta->p.dir_y * dta->p.moveSpeed;
+			* (dta->p.move_s * 2))][(int)dta->p.pos_y] != '1')
+		dta->p.pos_x += dta->p.dir_y * dta->p.move_s;
 	if (dta->real_map[(int)dta->p.pos_x][(int)(dta->p.pos_y \
-		- dta->p.dir_x * (dta->p.moveSpeed * 2))] != '1')
-		dta->p.pos_y -= dta->p.dir_x * dta->p.moveSpeed;
+		- dta->p.dir_x * (dta->p.move_s * 2))] != '1')
+		dta->p.pos_y -= dta->p.dir_x * dta->p.move_s;
 	img_renderer(dta);
 }
 
@@ -29,11 +29,11 @@ void	ft_right(t_data *dta, int key)
 void	ft_left(t_data *dta, int key)
 {
 	if (dta->real_map[(int)(dta->p.pos_x - dta->p.dir_y \
-			* (dta->p.moveSpeed * 2))][(int)dta->p.pos_y] != '1')
-		dta->p.pos_x -= dta->p.dir_y * dta->p.moveSpeed;
+			* (dta->p.move_s * 2))][(int)dta->p.pos_y] != '1')
+		dta->p.pos_x -= dta->p.dir_y * dta->p.move_s;
 	if (dta->real_map[(int)dta->p.pos_x][(int)(dta->p.pos_y \
-		+ dta->p.dir_x * (dta->p.moveSpeed * 2))] != '1')
-		dta->p.pos_y += dta->p.dir_x * dta->p.moveSpeed;
+		+ dta->p.dir_x * (dta->p.move_s * 2))] != '1')
+		dta->p.pos_y += dta->p.dir_x * dta->p.move_s;
 	img_renderer(dta);
 	(void) key;
 }

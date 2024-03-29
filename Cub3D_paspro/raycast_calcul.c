@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:00:55 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/28 10:25:26 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/29 11:08:01 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,37 @@
 
 void	calcul_delta(t_data *dta)
 {
-	if (dta->rayDirX == 0)
-		dta->deltaDistX = 1e30;
+	if (dta->raydir_x == 0)
+		dta->deltadist_x = 1e30;
 	else
-		dta->deltaDistX = fabs(1 / dta->rayDirX);
-	if (dta->rayDirY == 0)
-		dta->deltaDistY = 1e30;
+		dta->deltadist_x = fabs(1 / dta->raydir_x);
+	if (dta->raydir_y == 0)
+		dta->deltadist_y = 1e30;
 	else
-		dta->deltaDistY = fabs(1 / dta->rayDirY);
+		dta->deltadist_y = fabs(1 / dta->raydir_y);
 }
 
 void	calcul_side_dest(t_data *dta)
 {
-	if (dta->rayDirX < 0)
+	if (dta->raydir_x < 0)
 	{
-		dta->stepX = -1;
-		dta->sideDistX = (dta->p.pos_x - dta->mapX) * dta->deltaDistX;
+		dta->step_x = -1;
+		dta->sidedest_x = (dta->p.pos_x - dta->map_x) * dta->deltadist_x;
 	}
 	else
 	{
-		dta->stepX = 1;
-		dta->sideDistX = (dta->mapX + 1.0 - dta->p.pos_x) * dta->deltaDistX;
+		dta->step_x = 1;
+		dta->sidedest_x = (dta->map_x + 1.0 - dta->p.pos_x) * dta->deltadist_x;
 	}
-	if (dta->rayDirY < 0)
+	if (dta->raydir_y < 0)
 	{
-		dta->stepY = -1;
-		dta->sideDistY = (dta->p.pos_y - dta->mapY) * dta->deltaDistY;
+		dta->step_y = -1;
+		dta->sidedest_y = (dta->p.pos_y - dta->map_y) * dta->deltadist_y;
 	}
 	else
 	{
-		dta->stepY = 1;
-		dta->sideDistY = (dta->mapY + 1.0 - dta->p.pos_y) * dta->deltaDistY;
+		dta->step_y = 1;
+		dta->sidedest_y = (dta->map_y + 1.0 - dta->p.pos_y) * dta->deltadist_y;
 	}
 }
 
@@ -52,19 +52,19 @@ void	perform_dda(t_data *dta)
 {
 	while (dta->hit == 0)
 	{
-		if (dta->sideDistX < dta->sideDistY)
+		if (dta->sidedest_x < dta->sidedest_y)
 		{
-			dta->sideDistX += dta->deltaDistX;
-			dta->mapX += dta->stepX;
+			dta->sidedest_x += dta->deltadist_x;
+			dta->map_x += dta->step_x;
 			dta->side = 0;
 		}
 		else
 		{
-			dta->sideDistY += dta->deltaDistY;
-			dta->mapY += dta->stepY;
+			dta->sidedest_y += dta->deltadist_y;
+			dta->map_y += dta->step_y;
 			dta->side = 1;
 		}
-		if (dta->real_map[(int)dta->mapX][(int)dta->mapY] == '1')
+		if (dta->real_map[(int)dta->map_x][(int)dta->map_y] == '1')
 			dta->hit = 1;
 	}
 }
@@ -72,14 +72,14 @@ void	perform_dda(t_data *dta)
 void	projected_dist(t_data *dta)
 {
 	if (dta->side == 0)
-		dta->perpWallDist = (dta->sideDistX - dta->deltaDistX);
+		dta->perp_wdist = (dta->sidedest_x - dta->deltadist_x);
 	else
-		dta->perpWallDist = (dta->sideDistY - dta->deltaDistY);
-	dta->lineHeight = (int)(dta->height / dta->perpWallDist);
-	dta->drawStart = -(dta->lineHeight) / 2 + dta->height / 2;
-	if (dta->drawStart < 0)
-		dta->drawStart = 0;
-	dta->drawEnd = dta->lineHeight / 2 + dta->height / 2;
-	if (dta->drawEnd >= dta->height)
-		dta->drawEnd = dta->height - 1;
+		dta->perp_wdist = (dta->sidedest_y - dta->deltadist_y);
+	dta->line_h = (int)(dta->height / dta->perp_wdist);
+	dta->draw_start = -(dta->line_h) / 2 + dta->height / 2;
+	if (dta->draw_start < 0)
+		dta->draw_start = 0;
+	dta->draw_end = dta->line_h / 2 + dta->height / 2;
+	if (dta->draw_end >= dta->height)
+		dta->draw_end = dta->height - 1;
 }

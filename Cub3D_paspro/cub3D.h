@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:19 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/28 17:28:20 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/29 11:08:22 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_p
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-	double	moveSpeed;
+	double	move_s;
 	double	rot_s;
 }	t_p;
 
@@ -65,7 +65,6 @@ typedef struct s_mlx
 typedef struct s_data
 {
 	char		**map_cpy;
-	int			psartek;
 	char		payer_letter;
 	int			start_map_cpy;
 	int			end_map;
@@ -81,12 +80,12 @@ typedef struct s_data
 	char		**map;
 	char		**real_map;
 	char		*map_str;
-	char		*NO;
-	char		*SO;
-	char		*WE;
-	char		*EA;
-	char		*F;
-	char		*C;
+	char		*no_line;
+	char		*so_line;
+	char		*we_line;
+	char		*ea_line;
+	char		*f_line;
+	char		*c_line;
 	int			player_x;
 	int			player_y;
 	int			i_color;
@@ -98,23 +97,23 @@ typedef struct s_data
 	int			tex_x;
 	int			tex_y;
 
-	double		cameraX;
-	double		rayDirX;
-	double		rayDirY;
-	double		mapX;
-	double		mapY;
-	double		deltaDistX;
-	double		deltaDistY;
-	double		sideDistX;
-	double		sideDistY;
-	double		perpWallDist;
-	int			stepX;
-	int			stepY;
+	double		cam_x;
+	double		raydir_x;
+	double		raydir_y;
+	double		map_x;
+	double		map_y;
+	double		deltadist_x;
+	double		deltadist_y;
+	double		sidedest_x;
+	double		sidedest_y;
+	double		perp_wdist;
+	int			step_x;
+	int			step_y;
 	int			hit;
 	int			side;
-	int			lineHeight;
-	int			drawStart;
-	int			drawEnd;
+	int			line_h;
+	int			draw_start;
+	int			draw_end;
 }	t_data;
 
 void	mlx_begin(t_data *dta);

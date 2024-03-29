@@ -38,12 +38,12 @@ int	keypress(int key, t_data *dta)
 void	ft_forward(t_data *dta, int key)
 {
 	(void) key;
-	if (dta->real_map[(int)(dta->p.pos_x + dta->p.dir_x * dta->p.moveSpeed)] \
+	if (dta->real_map[(int)(dta->p.pos_x + dta->p.dir_x * dta->p.move_s)] \
 			[(int)(dta->p.pos_y)] != '1')
-		dta->p.pos_x += dta->p.dir_x * dta->p.moveSpeed;
+		dta->p.pos_x += dta->p.dir_x * dta->p.move_s;
 	if (dta->real_map[(int)(dta->p.pos_x)] \
-			[(int)(dta->p.pos_y + dta->p.dir_y * dta->p.moveSpeed)] != '1')
-		dta->p.pos_y += dta->p.dir_y * dta->p.moveSpeed;
+			[(int)(dta->p.pos_y + dta->p.dir_y * dta->p.move_s)] != '1')
+		dta->p.pos_y += dta->p.dir_y * dta->p.move_s;
 	img_renderer(dta);
 }
 
@@ -51,11 +51,11 @@ void	ft_forward(t_data *dta, int key)
 void	ft_backward(t_data *dta, int key)
 {
 	(void) key;
-	if (dta->real_map[(int)(dta->p.pos_x - dta->p.dir_x * dta->p.moveSpeed)] \
+	if (dta->real_map[(int)(dta->p.pos_x - dta->p.dir_x * dta->p.move_s)] \
 			[(int)(dta->p.pos_y)] != '1')
-		dta->p.pos_x -= dta->p.dir_x * dta->p.moveSpeed;
+		dta->p.pos_x -= dta->p.dir_x * dta->p.move_s;
 	if (dta->real_map[(int)(dta->p.pos_x)] \
-			[(int)(dta->p.pos_y - dta->p.dir_y * dta->p.moveSpeed)] != '1')
-		dta->p.pos_y -= dta->p.dir_y * dta->p.moveSpeed;
+			[(int)(dta->p.pos_y - dta->p.dir_y * dta->p.move_s)] != '1')
+		dta->p.pos_y -= dta->p.dir_y * dta->p.move_s;
 	img_renderer(dta);
 }

@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:29:30 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/29 10:35:34 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/29 11:02:52 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,19 +116,19 @@ int	init_color(t_data *dta, char *id)
 
 int	first_parsing(t_data *dta)
 {
-	noempty(dta, dta->NO);
-	noempty(dta, dta->EA);
-	noempty(dta, dta->SO);
-	noempty(dta, dta->WE);
-	noempty(dta, dta->C);
-	noempty(dta, dta->F);
+	noempty(dta, dta->no_line);
+	noempty(dta, dta->ea_line);
+	noempty(dta, dta->so_line);
+	noempty(dta, dta->we_line);
+	noempty(dta, dta->c_line);
+	noempty(dta, dta->f_line);
 	dta->texture = malloc(sizeof(t_texture) * 6);
-	dta->texture[0].path = init_path(dta, dta->NO, 2);
-	dta->texture[1].path = init_path(dta, dta->SO, 2);
-	dta->texture[2].path = init_path(dta, dta->EA, 2);
-	dta->texture[3].path = init_path(dta, dta->WE, 2);
-	dta->texture[4].path = init_path(dta, dta->F, 1);
-	dta->texture[5].path = init_path(dta, dta->C, 1);
+	dta->texture[0].path = init_path(dta, dta->no_line, 2);
+	dta->texture[1].path = init_path(dta, dta->so_line, 2);
+	dta->texture[2].path = init_path(dta, dta->ea_line, 2);
+	dta->texture[3].path = init_path(dta, dta->we_line, 2);
+	dta->texture[4].path = init_path(dta, dta->f_line, 1);
+	dta->texture[5].path = init_path(dta, dta->c_line, 1);
 	// printf("dta->texture[0].path : '%s'\n", dta->texture[0].path);
 	// printf("dta->texture[1].path : '%s'\n", dta->texture[1].path);
 	// printf("dta->texture[2].path : '%s'\n", dta->texture[2].path);

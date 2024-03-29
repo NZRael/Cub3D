@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:16 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/28 13:34:46 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/29 11:03:35 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	mlx_begin(t_data *dta)
 void	init_p(t_data *dta)
 {
 	init_player(dta);
-	dta->p.moveSpeed = 0.15;
+	dta->p.move_s = 0.15;
 	dta->p.rot_s = 0.07;
 	dta->texheight = 64;
 	dta->texwidth = 64;
