@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:29:30 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/28 17:42:33 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/29 10:35:34 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	noempty(t_data *dta, char *id)
 {
 	if (id == NULL)
-		ft_exit(dta, "there is 2 same id");
+		ft_exit(dta, "There is 2 same id or one is missing");
 }
 
 char	*init_path(t_data *dta, char *tex_path, int nbr)
@@ -25,10 +25,12 @@ char	*init_path(t_data *dta, char *tex_path, int nbr)
 	char	*tmp_path;
 
 	start_path = 0;
-	while (tex_path[start_path] && (tex_path[start_path] == ' ' || tex_path[start_path] == '\t'))
+	while (tex_path[start_path] && (tex_path[start_path] == ' ' \
+			|| tex_path[start_path] == '\t'))
 		start_path++;
 	end = start_path + nbr;
-	if (tex_path[end] == '\0' || (tex_path[end] != ' ' && tex_path[end] != '\t'))
+	if (tex_path[end] == '\0' || (tex_path[end] != ' ' \
+			&& tex_path[end] != '\t'))
 		ft_exit(dta, "No path on a texture");
 	while (tex_path[end] && (tex_path[end] == ' ' || tex_path[end] == '\t'))
 		end++;
@@ -85,7 +87,8 @@ int	init_color(t_data *dta, char *id)
 	if (!nbr)
 		ft_exit(dta, "pb malloc");
 	dta->i_color = i2;
-	while (id[dta->i_color] == ' ' || id[dta->i_color] == '\t' || id[dta->i_color] == ',')
+	while (id[dta->i_color] == ' ' || id[dta->i_color] == '\t' \
+			|| id[dta->i_color] == ',')
 	{
 		if (id[dta->i_color] == ',')
 			dta->nbr_comma++;
@@ -94,12 +97,15 @@ int	init_color(t_data *dta, char *id)
 	i2 = dta->i_color;
 	if (dta->nbr_comma == 2 || dta->nbr_comma == 4)
 	{
-		while (id[i2] >= '0' && id[i2] <= '9')
+		while (id[i2] && id[i2] >= '0' && id[i2] <= '9')
 			i2++;
-		while (id[i2] != '\0')
+		while (id[i2] && id[i2] != '\0')
 		{
 			if (!(id[i2] == ' ' || id[i2] == '\t' || id[i2] == ',' ))
-				ft_exit(dta, "trop de nombres , RVB\n");
+			{
+				free(nbr);
+				ft_exit(dta, "trop de nombres , RVB");
+			}
 			i2++;
 		}
 	}

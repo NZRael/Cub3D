@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:04:02 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/28 15:02:26 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/29 10:11:56 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,8 @@ int	structuration(t_data *dta)
 			dta->C = dta->map[i];
 		if (dta->map[i][i2] == 'F')
 			dta->F = dta->map[i];
-		else if (dta->map[i][i2] == ' ' || dta->map[i][i2] == '\t')
-		{
+		if (dta->map[i][i2] == '\0')
 			stop++;
-			while (dta->map[i][i2] != '\0' && dta->map[i][i2])
-			{
-				if (!(dta->map[i][i2] == ' ' || dta->map[i][i2] == '\t'))
-					ft_exit(dta, "wrong line\n");
-				i2++;
-			}
-		}
 		i++;
 	}
 	after_id(dta, stop);

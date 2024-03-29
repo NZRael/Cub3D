@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:44:33 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/28 17:07:45 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/03/29 10:35:43 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ char	*init_path(t_data *dta, char *tex_path, int nbr)
 	char	*tmp_path;
 
 	start_path = 0;
-	while (tex_path[start_path] && (tex_path[start_path] == ' ' || tex_path[start_path] == '\t'))
+	while (tex_path[start_path] && (tex_path[start_path] == ' ' \
+			|| tex_path[start_path] == '\t'))
 		start_path++;
 	end = start_path + nbr;
-	if (tex_path[end] == '\0' || (tex_path[end] != ' ' && tex_path[end] != '\t'))
+	if (tex_path[end] == '\0' || (tex_path[end] != ' ' \
+			&& tex_path[end] != '\t'))
 		ft_exit(dta, "No path on a texture");
 	while (tex_path[end] && (tex_path[end] == ' ' || tex_path[end] == '\t'))
 		end++;
@@ -44,38 +46,36 @@ char	*init_path(t_data *dta, char *tex_path, int nbr)
 	return (tmp_path);
 }
 
-void	verif_color(t_data *d)
+void	verif_color(t_data *dta)
 {
 	int	i;
 
 	i = 0;
-	while (d->texture[4].path[i] != '\0')
+	while (dta->texture[4].path[i] != '\0')
 	{
-		if (!((d->texture[4].path[i] == ' ' || d->texture[4].path[i] == '\t' \
-				|| d->texture[4].path[i] == ',' ) \
-				|| (d->texture[4].path[i] >= '0' \
-				&& d->texture[4].path[i] <= '9')))
-			ft_exit(d, "nique bien ta mere\n");
+		if (!((dta->texture[4].path[i] == ' ' \
+				|| dta->texture[4].path[i] == '\t' \
+				|| dta->texture[4].path[i] == ',' ) \
+				|| (dta->texture[4].path[i] >= '0' \
+				&& dta->texture[4].path[i] <= '9')))
+			ft_exit(dta, "nique bien ta mere\n");
 		i++;
 	}
 	i = 0;
-	while (d->texture[5].path[i] != '\0')
+	while (dta->texture[5].path[i] != '\0')
 	{
-		if (!((d->texture[5].path[i] == ' ' || d->texture[5].path[i] == '\t' \
-		|| d->texture[5].path[i] == ',' ) \
-		|| (d->texture[5].path[i] >= '0' \
-		&& d->texture[5].path[i] <= '9')))
-			ft_exit(d, "nique bien ta mere\n");
+		if (!((dta->texture[5].path[i] == ' ' || dta->texture[5].path[i] == '\t' || dta->texture[5].path[i] == ',' ) || (dta->texture[5].path[i] >= '0' && dta->texture[5].path[i] <= '9')))
+			ft_exit(dta, "nique bien ta mere\n");
 		i++;
 	}
-	if (d->color[0].red < 0 || d->color[0].green < 0 || d->color[0].blue < 0
-		|| d->color[1].red < 0 || d->color[1].green < 0 || d->color[1].blue < 0)
-		ft_exit(d, "color pas bon mon copainnn\n");
-	if (d->nbr_comma != 4)
-		ft_exit(d, "pas bon, trop de virgules\n");
-	if (d->color[0].red > 255 || d->color[0].green > 255 || d->color[0].blue > 255
-		|| d->color[1].red > 255 || d->color[1].green > 255 || d->color[1].blue > 255)
-		ft_exit(d, "wsh t un ouf a mettre des nombres comme ca gros\n");
+	if (dta->color[0].red == 0 || dta->color[0].green == 0 || dta->color[0].blue == 0 ||
+		dta->color[1].red == 0 || dta->color[1].green == 0 || dta->color[1].blue == 0)
+		ft_exit(dta, "color pas bon mon copainnn\n");
+	if (dta->nbr_comma != 4)
+		ft_exit(dta, "pas bon, trop de virgules\n");
+	if (dta->color[0].red > 255 || dta->color[0].green > 255 || dta->color[0].blue > 255 ||
+		dta->color[1].red > 255 || dta->color[1].green > 255 || dta->color[1].blue > 255)
+		ft_exit(dta, "wsh t un ouf a mettre des nombres comme ca gros\n");
 }
 
 //13/12/2023
@@ -93,7 +93,7 @@ int	init_color(t_data *dta, char *id)
 		ft_exit(dta, "pb malloc");
 	dta->i_color = i2;
 	while (id[dta->i_color] == ' ' || id[dta->i_color] == '\t' \
-	|| id[dta->i_color] == ',')
+			|| id[dta->i_color] == ',')
 	{
 		if (id[dta->i_color] == ',')
 			dta->nbr_comma++;
