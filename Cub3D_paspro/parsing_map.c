@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:08:30 by fleriche          #+#    #+#             */
-/*   Updated: 2024/04/03 16:11:06 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/03 17:02:05 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int	parsing_map(t_data *dta)
 	int	i2;
 
 	i = dta->start_map;
-	while (dta->real_map[i])
+	while (i <= dta->end_map)
 	{
 		if (dta->real_map[i])
 			i2 = 0;
@@ -138,22 +138,10 @@ int	parsing_map(t_data *dta)
 		}
 		i++;
 	}
-	dta->end_map = i;
 	verif_doublon(dta);
 	dta->map_cpy = dta->real_map;
 	dta->payer_letter = dta->real_map[dta->player_x][dta->player_y];
 	// printf("%c", dta->payer_letter);
-	// printf("lol\n");
 	verif_holes(dta);
-	// def_just_map(dta);
 	return (0);
 }
-
-// void	def_just_map(t_data *dta)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = dta->start_map;
-
-// }

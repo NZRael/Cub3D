@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:45:38 by fleriche          #+#    #+#             */
-/*   Updated: 2024/04/03 15:29:52 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/03 16:56:26 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	after_id(t_data *dta, int start)
 	int	i;
 
 	i = 0;
+	if (!dta->map[start])
+		ft_exit(dta, "No map");
 	while (dta->map[start][i] && dta->map[start][i] != '1' \
 			&& dta->map[start][i] != '\0')
 	{
