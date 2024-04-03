@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:19 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/29 11:08:22 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/03 15:46:17 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ typedef struct s_data
 	char		**map_cpy;
 	char		payer_letter;
 	int			start_map_cpy;
-	int			end_map;
 	t_texture	*texture;
 	t_color		color[2];
 	t_p			p;
@@ -77,6 +76,7 @@ typedef struct s_data
 	int			nbr_e;
 	int			nbr_w;
 	int			start_map;
+	int			end_map;
 	char		**map;
 	char		**real_map;
 	char		*map_str;
@@ -121,10 +121,14 @@ void	mlx_begin(t_data *dta);
 void	ft_check_mapfile(t_data *dta, char *mapfile);
 void	check_args(int argc, char **argv, t_data *dta);
 
-int		all_parsing(t_data *dta);
+int		all_parsing(t_data *dta, char *file);
 void	ft_initialisation(t_data *dta);
 int		structuration(t_data *dta);
 int		first_parsing(t_data *dta);
+void	parsing_before_map(t_data *dta, char *file);
+void	gnl_forparsing(t_data *dta, char *file);
+char	*ft_joinforme(char *s1, char *s2);
+char	*ft_strjoinfree(char *stock, char *tmp);
 char	*ft_strjoinfree2(char *stock, char *tmp);
 void	verif_doublon(t_data *dta);
 char	*init_path(t_data *dta, char *tex_path, int nbr);

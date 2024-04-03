@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:39:06 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/28 16:58:34 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/03 16:08:37 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	init_player(t_data *dta)
 {
-	dta->p.pos_x = 14 + 0.5;
-	dta->p.pos_y = 10 + 0.5;
-	if (dta->map[dta->player_x][dta->player_y] == 'W')
+	dta->p.pos_x = dta->player_x + 0.5;
+	dta->p.pos_y = dta->player_y + 0.5;
+	if (dta->real_map[dta->player_x][dta->player_y] == 'W')
 		init_direction_w(dta);
-	else if (dta->map[dta->player_x][dta->player_y] == 'E')
+	else if (dta->real_map[dta->player_x][dta->player_y] == 'E')
 		init_direction_e(dta);
-	else if (dta->map[dta->player_x][dta->player_y] == 'S')
+	else if (dta->real_map[dta->player_x][dta->player_y] == 'S')
 		init_direction_s(dta);
-	else if (dta->map[dta->player_x][dta->player_y] == 'N')
+	else if (dta->real_map[dta->player_x][dta->player_y] == 'N')
 		init_direction_n(dta);
 }
 

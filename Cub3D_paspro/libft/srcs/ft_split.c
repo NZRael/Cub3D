@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:46:57 by sboetti           #+#    #+#             */
-/*   Updated: 2023/07/10 16:30:08 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/02 11:11:06 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	**ft_split(char *s, char c)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (s[i])
+	while (s[i] != '\0')
 	{
 		while (ischarset(s[i], c) && s[i])
 			i++;

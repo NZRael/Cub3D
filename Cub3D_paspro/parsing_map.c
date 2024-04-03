@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:08:30 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/29 11:04:24 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/03 16:11:06 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 void	verif_char(t_data *dta, int i, int i2)
 {
-	if (!(dta->map[i][i2] == '0' || dta->map[i][i2] == '1' \
-			|| dta->map[i][i2] == 'N' || dta->map[i][i2] == 'S' \
-			|| dta->map[i][i2] == 'E' || dta->map[i][i2] == 'W' \
-			|| dta->map[i][i2] == ' ' || dta->map[i][i2] == '\t'))
+	if (!(dta->real_map[i][i2] == '0' || dta->real_map[i][i2] == '1' \
+			|| dta->real_map[i][i2] == 'N' || dta->real_map[i][i2] == 'S' \
+			|| dta->real_map[i][i2] == 'E' || dta->real_map[i][i2] == 'W' \
+			|| dta->real_map[i][i2] == ' ' || dta->real_map[i][i2] == '\t' || dta->real_map[i][i2] == '\n'))
 		ft_exit(dta, "map pas bon\n");
-	if (dta->map[i][i2] == 'N' || dta->map[i][i2] == 'S' \
-			|| dta->map[i][i2] == 'E' || dta->map[i][i2] == 'W')
+	if (dta->real_map[i][i2] == 'N' || dta->real_map[i][i2] == 'S' \
+			|| dta->real_map[i][i2] == 'E' || dta->real_map[i][i2] == 'W')
 	{
 		dta->player_x = i;
 		dta->player_y = i2;
+		printf("player_x = %d\n", dta->player_x);
+		printf("player_y = %d\n", dta->player_y);
 	}
 }
 
@@ -39,13 +41,13 @@ void	verif_doublon(t_data *dta)
 
 void	nbr_char(t_data *dta, int i, int i2)
 {
-	if (dta->map[i][i2] == 'N')
+	if (dta->real_map[i][i2] == 'N')
 		dta->nbr_n++;
-	if (dta->map[i][i2] == 'S')
+	if (dta->real_map[i][i2] == 'S')
 		dta->nbr_s++;
-	if (dta->map[i][i2] == 'W')
+	if (dta->real_map[i][i2] == 'W')
 		dta->nbr_w++;
-	if (dta->map[i][i2] == 'E')
+	if (dta->real_map[i][i2] == 'E')
 		dta->nbr_e++;
 }
 
@@ -124,11 +126,11 @@ int	parsing_map(t_data *dta)
 	int	i2;
 
 	i = dta->start_map;
-	while (dta->map[i])
+	while (dta->real_map[i])
 	{
-		if (dta->map[i])
-		i2 = 0;
-		while (dta->map[i][i2] != '\0')
+		if (dta->real_map[i])
+			i2 = 0;
+		while (dta->real_map[i][i2] != '\0')
 		{
 			verif_char(dta, i, i2);
 			nbr_char(dta, i, i2);
@@ -138,8 +140,8 @@ int	parsing_map(t_data *dta)
 	}
 	dta->end_map = i;
 	verif_doublon(dta);
-	dta->map_cpy = dta->map;
-	dta->payer_letter = dta->map[dta->player_x][dta->player_y];
+	dta->map_cpy = dta->real_map;
+	dta->payer_letter = dta->real_map[dta->player_x][dta->player_y];
 	// printf("%c", dta->payer_letter);
 	// printf("lol\n");
 	verif_holes(dta);

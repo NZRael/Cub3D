@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 11:16:40 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/27 17:23:57 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/02 10:18:08 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_getline(char *sbase)
 	i = 0;
 	if (!sbase[i])
 		return (NULL);
-	while (sbase[i] != '\n' && sbase[i])
+	while (sbase[i] && sbase[i] != '\n')
 		i++;
 	str = malloc(sizeof(char) * (i + 2));
 	if (!str)

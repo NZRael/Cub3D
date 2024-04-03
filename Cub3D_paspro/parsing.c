@@ -6,19 +6,20 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:45:38 by fleriche          #+#    #+#             */
-/*   Updated: 2024/03/29 11:04:04 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/03 15:29:52 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	all_parsing(t_data *dta)
+int	all_parsing(t_data *dta, char *file)
 {
 	// for (int x = 0; dta->map[x] != NULL; x++)
 	// 	printf("dta->map[%d] = '%s'\n", x, dta->map[x]);
 	ft_initialisation(dta);
 	structuration(dta);
 	first_parsing(dta);
+	parsing_before_map(dta, file);
 	parsing_map(dta);
 	return (0);
 }
@@ -70,7 +71,8 @@ int	structuration(t_data *dta)
 	while (i < stop)
 	{
 		i2 = 0;
-		while (dta->map[i][i2] == ' ' || dta->map[i][i2] == '\t')
+		while (dta->map[i][i2] \
+				&& (dta->map[i][i2] == ' ' || dta->map[i][i2] == '\t'))
 			i2++;
 		if (dta->map[i][i2] == 'N' && dta->map[i][i2 + 1] \
 				&& dta->map[i][i2 + 1] == 'O')
