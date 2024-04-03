@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 16:14:31 by sboetti           #+#    #+#             */
-/*   Updated: 2024/04/03 16:04:25 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/03 16:53:41 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,58 @@ void	search_end_map(t_data *dta)
 	}
 }
 
+//si start map == -1 c que ya pas de map
+
+void	verif_map_in_one_part(t_data *dta)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (dta->real_map[i] != NULL)
+		i++;
+	i--;
+	j=0;
+	while (i >= dta->start_map)
+	{
+		if (dta->real_map[i][j] && (dta->real_map[i][j] == ' ' || dta->real_map[i][j] == '\t' || dta->real_map[i][j] == '\n'))
+		{
+			j++;
+			printf("%d\n", i);
+		}
+		else
+		{
+			i--;
+			j=0;
+			while (i >= dta->start_map)
+			{
+				j = 0;
+				while (dta->real_map[i][j] && dta->real_map[i][j] != '\n')
+				{
+					if (dta->real_map[i][j] == ' ' || dta->real_map[i][j] == '\t')
+						ft_exit(dta, "ntmlejean");
+					else
+						j++;
+				}
+				i--;
+			}
+		}
+		if (dta->real_map[i][j] == '\0')
+		{
+			i--;
+			j = 0;
+		}
+	}
+}
+
+//rajouter que ca crash que si la ligne entiere est vide
+
 void	parsing_before_map(t_data *dta, char *file)
 {
 	gnl_forparsing(dta, file);
 	search_real_start(dta);
 	search_end_map(dta);
+	verif_map_in_one_part(dta);
 	return ;
 }
 
