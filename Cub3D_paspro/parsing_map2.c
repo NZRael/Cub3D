@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 16:14:31 by sboetti           #+#    #+#             */
-/*   Updated: 2024/04/03 16:53:41 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/04 16:21:59 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,72 +45,25 @@ void	search_end_map(t_data *dta)
 	while (i >= dta->start_map)
 	{
 		j = 0;
-		while (dta->real_map[i][j] && dta->real_map[i][j] == '\n' \
-				&& dta->real_map[i][j] == ' ' && dta->real_map[i][j] == '\t')
+		while (dta->real_map[i][j] && (dta->real_map[i][j] == '\n' \
+				|| dta->real_map[i][j] == ' ' || dta->real_map[i][j] == '\t'))
 			j++;
-		if (dta->real_map[i][j] && (dta->real_map[i][j] != '1'  \
-				|| dta->real_map[i][j] != '0'))
-			i--;
-		else
+		if (dta->real_map[i][j] && dta->real_map[i][j] != '\0')
 		{
 			dta->end_map = i;
 			break ;
 		}
-	}
-}
-
-//si start map == -1 c que ya pas de map
-
-void	verif_map_in_one_part(t_data *dta)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (dta->real_map[i] != NULL)
-		i++;
-	i--;
-	j=0;
-	while (i >= dta->start_map)
-	{
-		if (dta->real_map[i][j] && (dta->real_map[i][j] == ' ' || dta->real_map[i][j] == '\t' || dta->real_map[i][j] == '\n'))
-		{
-			j++;
-			printf("%d\n", i);
-		}
 		else
-		{
 			i--;
-			j=0;
-			while (i >= dta->start_map)
-			{
-				j = 0;
-				while (dta->real_map[i][j] && dta->real_map[i][j] != '\n')
-				{
-					if (dta->real_map[i][j] == ' ' || dta->real_map[i][j] == '\t')
-						ft_exit(dta, "ntmlejean");
-					else
-						j++;
-				}
-				i--;
-			}
-		}
-		if (dta->real_map[i][j] == '\0')
-		{
-			i--;
-			j = 0;
-		}
 	}
+	return ;
 }
-
-//rajouter que ca crash que si la ligne entiere est vide
 
 void	parsing_before_map(t_data *dta, char *file)
 {
 	gnl_forparsing(dta, file);
 	search_real_start(dta);
 	search_end_map(dta);
-	verif_map_in_one_part(dta);
 	return ;
 }
 
@@ -124,10 +77,7 @@ char	*ft_joinforme(char *s1,  char *s2)
 		return (NULL);
 	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 2);
 	if (str == NULL)
-	{
-		printf("COUCOU\n");
 		return (NULL);
-	}
 	while (s1[i])
 	{
 		str[i] = s1[i];
@@ -183,3 +133,7 @@ void	gnl_forparsing(t_data *dta, char *file)
 		ft_exit(dta, "Nothing in the all_file");
 	return ;
 }
+
+
+//tout les 0 doivent pas etre en contact avec un space
+//tout les caractere 0 1 doivent etre en contact soit en haut en bas a gauche a droite avec un 0 ou un 1

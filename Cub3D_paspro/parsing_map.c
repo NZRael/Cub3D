@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:08:30 by fleriche          #+#    #+#             */
-/*   Updated: 2024/04/03 17:02:05 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/04 16:22:36 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	verif_char(t_data *dta, int i, int i2)
 	if (!(dta->real_map[i][i2] == '0' || dta->real_map[i][i2] == '1' \
 			|| dta->real_map[i][i2] == 'N' || dta->real_map[i][i2] == 'S' \
 			|| dta->real_map[i][i2] == 'E' || dta->real_map[i][i2] == 'W' \
-			|| dta->real_map[i][i2] == ' ' || dta->real_map[i][i2] == '\t' || dta->real_map[i][i2] == '\n'))
+			|| dta->real_map[i][i2] == ' ' || dta->real_map[i][i2] == '\n'))
 		ft_exit(dta, "map pas bon\n");
 	if (dta->real_map[i][i2] == 'N' || dta->real_map[i][i2] == 'S' \
 			|| dta->real_map[i][i2] == 'E' || dta->real_map[i][i2] == 'W')
@@ -57,15 +57,13 @@ void	player_extend(t_data *dta)
 	int	i2;
 
 	i = dta->start_map;
-	while (dta->map_cpy[i])
+	while (i <= dta->end_map)
 	{
 		i2 = 0;
 		while (dta->map_cpy[i][i2] != '\0')
 		{
 			if (dta->map_cpy[i][i2] == dta->payer_letter)
 			{
-				if (i == dta->end_map - 1)
-					ft_exit(dta, "pas bonnnnn");
 				if (dta->map_cpy[i][i2 + 1] == ' ' || dta->map_cpy[i][i2 + 1] == '\t' || dta->map_cpy[i][i2 + 1] == '\0')
 					ft_exit(dta, "map ouverte");
 				if (dta->map_cpy[i][i2 - 1] == ' ' || dta->map_cpy[i][i2 - 1] == '\t' || dta->map_cpy[i][i2 - 1] == '\0')
@@ -82,15 +80,8 @@ void	player_extend(t_data *dta)
 					dta->map_cpy[i + 1][i2] = dta->payer_letter;
 				if (dta->map_cpy[i - 1][i2] == '0' || dta->map_cpy[i - 1][i2] == '2')
 					dta->map_cpy[i - 1][i2] = dta->payer_letter;
-				// printf("%d\n", i);
-				// printf("%d\n", i2);
-				// printf("%s\n", dta->map_cpy[i]);
-				// printf("%s\n", dta->map_cpy[32]);
-				// printf("%c\n", dta->map_cpy[i][i2]);
-				// printf("lol1\n");
 			}
 			i2++;
-			// printf("%d\n", i2);
 		}
 		i++;
 	}
@@ -103,7 +94,7 @@ void	verif_holes(t_data *dta)
 	int	i2;
 
 	i = dta->start_map;
-	while (dta->map_cpy[i])
+	while (i <= dta->end_map)
 	{
 		i2 = 0;
 		while (dta->map_cpy[i][i2] != '\0')
@@ -126,6 +117,8 @@ int	parsing_map(t_data *dta)
 	int	i2;
 
 	i = dta->start_map;
+	// printf("DTA->STARTMAP = %d\n", dta->start_map);
+	// printf("DTA->ENDMAP = %d\n", dta->end_map);
 	while (i <= dta->end_map)
 	{
 		if (dta->real_map[i])
@@ -139,9 +132,63 @@ int	parsing_map(t_data *dta)
 		i++;
 	}
 	verif_doublon(dta);
-	dta->map_cpy = dta->real_map;
+	create_mapcpy(dta);
 	dta->payer_letter = dta->real_map[dta->player_x][dta->player_y];
 	// printf("%c", dta->payer_letter);
 	verif_holes(dta);
-	return (0);
+	zero_extend(dta);
+	return (0); 
 }
+
+void	create_mapcpy(t_data *dta)
+{
+	int		i;
+
+	i = 0;
+	while (dta->real_map[i])
+		i++;
+	dta->map_cpy = malloc(sizeof(char *) * i);
+	i = 0;
+	while (dta->real_map[i])
+	{
+		dta->map_cpy[i] = ft_strdup(dta->real_map[i]);
+		i++;
+	}
+	dta->map_cpy[i] = NULL;
+	return;
+}
+
+void zero_extend(t_data *dta)
+{
+	int i;
+	int j;
+
+	i = dta->start_map;
+	while (i <= dta->end_map)
+	{
+		j = 0;
+		while (dta->real_map[i][j] != '\0')
+		{
+			printf("dta->real_map[%d][%d] = %c\n", i, j, dta->real_map[i][j]);
+			if (dta->real_map[i][j] == '0')
+			{
+				if (dta->real_map[i][j + 1] != '0' && dta->real_map[i][j + 1] != '1' && dta->real_map[i][j + 1] != 'N')
+					ft_exit(dta, "puteuh a droite\n");
+				if (dta->real_map[i][j - 1] != '0' && dta->real_map[i][j - 1] != '1' && dta->real_map[i][j + -1] != 'N')
+					ft_exit(dta, "puteuh a gauche\n");
+				if (dta->real_map[i + 1][j] != '0' && dta->real_map[i + 1][j] != '1' && dta->real_map[i + 1][j] != 'N')
+				{
+					printf("dta->real_map[%d + 1][%d] = %c\n", i, j, dta->real_map[i + 1][j]);
+					ft_exit(dta, "puteuh en bas\n");
+				}
+				if (dta->real_map[i - 1][j] != '0' && dta->real_map[i - 1][j] != '1' && dta->real_map[i - 1][j] != 'N')
+					ft_exit(dta, "puteuh en haut\n");
+				printf("yo\n");
+			}
+			j++;
+			
+		}
+		i++;
+	}
+}
+

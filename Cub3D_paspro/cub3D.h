@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:19 by fleriche          #+#    #+#             */
-/*   Updated: 2024/04/03 15:46:17 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/04 15:50:00 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ typedef struct s_data
 {
 	char		**map_cpy;
 	char		payer_letter;
-	int			start_map_cpy;
 	t_texture	*texture;
 	t_color		color[2];
 	t_p			p;
@@ -116,6 +115,8 @@ typedef struct s_data
 	int			draw_end;
 }	t_data;
 
+void	create_mapcpy(t_data *dta);
+void	zero_extend(t_data *dta);
 void	mlx_begin(t_data *dta);
 
 void	ft_check_mapfile(t_data *dta, char *mapfile);
