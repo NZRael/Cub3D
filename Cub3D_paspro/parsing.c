@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:45:38 by fleriche          #+#    #+#             */
-/*   Updated: 2024/04/03 16:56:26 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/08 15:20:51 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	ft_initialisation(t_data *dta)
 	dta->nbr_s = 0;
 	dta->nbr_e = 0;
 	dta->nbr_w = 0;
+	dta->stop = 0;
 }
 
 void	after_id(t_data *dta, int start)

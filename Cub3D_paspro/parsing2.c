@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:29:30 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/29 11:02:52 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/08 16:33:46 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	verif_color(t_data *dta)
 			ft_exit(dta, "nique bien ta mere\n");
 		i++;
 	}
-	if (dta->color[0].red == 0 || dta->color[0].green == 0 || dta->color[0].blue == 0 ||
-		dta->color[1].red == 0 || dta->color[1].green == 0 || dta->color[1].blue == 0)
+	if (dta->color[0].red < 0 || dta->color[0].green < 0 || dta->color[0].blue < 0 ||
+		dta->color[1].red < 0 || dta->color[1].green < 0 || dta->color[1].blue < 0)
 		ft_exit(dta, "color pas bon mon copainnn\n");
 	if (dta->nbr_comma != 4)
 		ft_exit(dta, "pas bon, trop de virgules\n");
@@ -84,8 +84,8 @@ int	init_color(t_data *dta, char *id)
 	while (id[i2] >= '0' && id[i2] <= '9')
 		i2++;
 	nbr = ft_substr(id, dta->i_color, i2 - dta->i_color + 1);
-	if (!nbr)
-		ft_exit(dta, "pb malloc");
+	if (!nbr[0])
+		ft_exit(dta, "pb coloration");
 	dta->i_color = i2;
 	while (id[dta->i_color] == ' ' || id[dta->i_color] == '\t' \
 			|| id[dta->i_color] == ',')

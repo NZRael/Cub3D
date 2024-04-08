@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:08:30 by fleriche          #+#    #+#             */
-/*   Updated: 2024/04/05 16:48:29 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/08 16:12:43 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,23 @@ void	player_extend(t_data *dta)
 		i2 = 0;
 		while (dta->map_cpy[i][i2] != '\0')
 		{
-			if (dta->map_cpy[i][i2] == dta->payer_letter)
+			if (dta->map_cpy[i][i2] && dta->map_cpy[i][i2] == dta->payer_letter)
 			{
-				if (dta->map_cpy[i][i2 + 1] == ' ' || dta->map_cpy[i][i2 + 1] == '\t' || dta->map_cpy[i][i2 + 1] == '\0')
+				if (dta->map_cpy[i][i2 + 1] && (dta->map_cpy[i][i2 + 1] == ' ' || dta->map_cpy[i][i2 + 1] == '\t' || dta->map_cpy[i][i2 + 1] == '\0'))
 					ft_exit(dta, "map ouverte");
-				if (dta->map_cpy[i][i2 - 1] == ' ' || dta->map_cpy[i][i2 - 1] == '\t' || dta->map_cpy[i][i2 - 1] == '\0')
+				if (dta->map_cpy[i][i2 - 1] && (dta->map_cpy[i][i2 - 1] == ' ' || dta->map_cpy[i][i2 - 1] == '\t' || dta->map_cpy[i][i2 - 1] == '\0'))
 					ft_exit(dta, "map ouverte");
-				if (dta->map_cpy[i + 1][i2] == ' ' || dta->map_cpy[i + 1][i2] == '\t' || dta->map_cpy[i + 1][i2] == '\0')
+				if (dta->map_cpy[i + 1] && dta->map_cpy[i + 1][i2] && (dta->map_cpy[i + 1][i2] == ' ' || dta->map_cpy[i + 1][i2] == '\t' || dta->map_cpy[i + 1][i2] == '\0'))
 					ft_exit(dta, "map ouverte");
-				if (dta->map_cpy[i - 1][i2] == ' ' || dta->map_cpy[i - 1][i2] == '\t' || dta->map_cpy[i - 1][i2] == '\0')
+				if (dta->map_cpy[i - 1][i2] && (dta->map_cpy[i - 1][i2] == ' ' || dta->map_cpy[i - 1][i2] == '\t' || dta->map_cpy[i - 1][i2] == '\0'))
 					ft_exit(dta, "map ouverte");
-				if (dta->map_cpy[i][i2 + 1] == '0' || dta->map_cpy[i][i2 + 1] == '2')
+				if (dta->map_cpy[i][i2 + 1] && (dta->map_cpy[i][i2 + 1] == '0' || dta->map_cpy[i][i2 + 1] == '2'))
 					dta->map_cpy[i][i2 + 1] = dta->payer_letter;
-				if (dta->map_cpy[i][i2 - 1] == '0' || dta->map_cpy[i][i2 - 1] == '2')
+				if (dta->map_cpy[i][i2 - 1] && (dta->map_cpy[i][i2 - 1] == '0' || dta->map_cpy[i][i2 - 1] == '2'))
 					dta->map_cpy[i][i2 - 1] = dta->payer_letter;
-				if (dta->map_cpy[i + 1][i2] == '0' || dta->map_cpy[i + 1][i2] == '2')
+				if (dta->map_cpy[i + 1] && dta->map_cpy[i + 1][i2] && (dta->map_cpy[i + 1][i2] == '0' || dta->map_cpy[i + 1][i2] == '2'))
 					dta->map_cpy[i + 1][i2] = dta->payer_letter;
-				if (dta->map_cpy[i - 1][i2] == '0' || dta->map_cpy[i - 1][i2] == '2')
+				if (dta->map_cpy[i - 1][i2] && (dta->map_cpy[i - 1][i2] == '0' || dta->map_cpy[i - 1][i2] == '2'))
 					dta->map_cpy[i - 1][i2] = dta->payer_letter;
 			}
 			i2++;
@@ -92,19 +92,95 @@ void	verif_holes(t_data *dta)
 {
 	int	i;
 	int	i2;
-
+	
 	i = dta->start_map;
 	while (i <= dta->end_map)
 	{
 		i2 = 0;
 		while (dta->map_cpy[i][i2] != '\0')
 		{
+			if (i2 == 0 && (dta->map_cpy[i][i2] != '1' && dta->map_cpy[i][i2] != ' '))
+				ft_exit(dta, "map etrevuo");
+			if (i == dta->start_map && (dta->map_cpy[i][i2] != '1' && dta->map_cpy[i][i2] != ' ' && dta->map_cpy[i][i2] != '\n'))
+				ft_exit(dta, "map etrevuo");
 			if (dta->map_cpy[i][i2] == '0')
 			{
 				dta->map_cpy[i][i2] = '2';
 				player_extend(dta);
-				// printf("lol2\n");
 			}
+			i2++;
+		}
+		i++;
+	}
+}
+
+void	projet_fini(t_data *dta)
+{
+	int	i;
+	int	i2;
+	
+	i = dta->start_map;
+	while (i <= dta->end_map)
+	{
+		i2 = 0;
+		while (dta->map_cpy[i][i2] != '\0')
+		{
+			//printf("mapcpy[%d][%d] = '%c'\n", i, i2, dta->map_cpy[i][i2]);
+			if (dta->map_cpy[i][i2] == ' ' || dta->map_cpy[i][i2] == dta->payer_letter || dta->map_cpy[i][i2] == '\n')
+				i2++;
+			else
+				ft_exit(dta, "TOI LA VIENS LA");
+		}
+		i++;
+	}
+}
+
+void	le_vrai_one_extend(t_data *dta)
+{
+	int	i;
+	int	i2;
+	
+	i = dta->start_map;
+	while (i <= dta->end_map)
+	{
+		i2 = 0;
+		while (dta->map_cpy[i][i2] != '\0')
+		{
+			if (dta->map_cpy[i][i2] && dta->map_cpy[i][i2] == dta->payer_letter)
+			{
+				if (dta->map_cpy[i][i2 + 1] && (dta->map_cpy[i][i2 + 1] == '0' || dta->map_cpy[i][i2 + 1] == '1'|| dta->map_cpy[i][i2 + 1] == '2'))
+					dta->map_cpy[i][i2 + 1] = dta->payer_letter;
+				if (dta->map_cpy[i][i2 - 1] && (dta->map_cpy[i][i2 - 1] == '0' || dta->map_cpy[i][i2 - 1] == '1' || dta->map_cpy[i][i2 + 1] == '2'))
+					dta->map_cpy[i][i2 - 1] = dta->payer_letter;
+				if (dta->map_cpy[i + 1] && dta->map_cpy[i + 1][i2] && (dta->map_cpy[i + 1][i2] == '0' || dta->map_cpy[i + 1][i2] == '1' || dta->map_cpy[i][i2 + 1] == '2'))
+					dta->map_cpy[i + 1][i2] = dta->payer_letter;
+				if (dta->map_cpy[i - 1][i2] && (dta->map_cpy[i - 1][i2] == '0' || dta->map_cpy[i - 1][i2] == '1' || dta->map_cpy[i][i2 + 1] == '2'))
+					dta->map_cpy[i - 1][i2] = dta->payer_letter;
+			}
+			i2++;
+		}
+		i++;
+		// printf("'%s'", dta->map_cpy[i -1]);
+	}
+	dta->stop--;
+	if (dta->stop != 0)
+		le_vrai_one_extend(dta);
+	projet_fini(dta);
+	// printf("'%s'", dta->map_cpy[dta->start_map]);
+}
+
+void	relance(t_data *dta)
+{
+	int	i;
+	int	i2;
+	
+	i = dta->start_map;
+	while (i <= dta->end_map)
+	{
+		i2 = 0;
+		while (dta->map_cpy[i][i2] != '\0')
+		{
+			dta->stop++;
 			i2++;
 		}
 		i++;
@@ -155,7 +231,9 @@ int	parsing_map(t_data *dta)
 	// printf("%c", dta->payer_letter);
 	verif_holes(dta);
 	zero_extend(dta);
-	one_extend(dta);
+	relance(dta);
+	le_vrai_one_extend(dta);
+	//one_extend(dta);
 	return (0); 
 }
 
@@ -173,13 +251,15 @@ void	zero_extend(t_data *dta)
 			//printf("dta->real_map[%d][%d] = %c\n", i, j, dta->real_map[i][j]);
 			if (dta->real_map[i][j] == '0')
 			{
-				if (dta->real_map[i][j + 1] && dta->real_map[i][j + 1] != '0' && dta->real_map[i][j + 1] != '1' && dta->real_map[i][j + 1] != 'N')
+				if (!dta->real_map[i+1])
+					ft_exit(dta, "braaaa\n");
+				if (dta->real_map[i][j + 1] && dta->real_map[i][j + 1] != '0' && dta->real_map[i][j + 1] != '1' && dta->real_map[i][j + 1] != dta->payer_letter)
 					ft_exit(dta, "puteuh a droite\n");
-				if (dta->real_map[i][j - 1] && dta->real_map[i][j - 1] != '0' && dta->real_map[i][j - 1] != '1' && dta->real_map[i][j + -1] != 'N')
+				if (dta->real_map[i][j - 1] && dta->real_map[i][j - 1] != '0' && dta->real_map[i][j - 1] != '1' && dta->real_map[i][j + -1] != dta->payer_letter)
 					ft_exit(dta, "puteuh a gauche\n");
-				if (dta->real_map[i + 1] && dta->real_map[i + 1][j] && dta->real_map[i + 1][j] != '0' && dta->real_map[i + 1][j] != '1' && dta->real_map[i + 1][j] != 'N')
+				if (dta->real_map[i + 1] && dta->real_map[i + 1][j] && dta->real_map[i + 1][j] != '0' && dta->real_map[i + 1][j] != '1' && dta->real_map[i + 1][j] != dta->payer_letter)
 					ft_exit(dta, "puteuh en bas\n");
-				if (dta->real_map[i - 1][j] && dta->real_map[i - 1][j] != '0' && dta->real_map[i - 1][j] != '1' && dta->real_map[i - 1][j] != 'N')
+				if (dta->real_map[i - 1][j] && dta->real_map[i - 1][j] != '0' && dta->real_map[i - 1][j] != '1' && dta->real_map[i - 1][j] != dta->payer_letter)
 					ft_exit(dta, "puteuh en haut\n");
 			}
 			j++;
@@ -204,13 +284,13 @@ void	one_extend(t_data *dta)
 			//printf("dta->real_map[%d][%d] = %c\n", i, j, dta->real_map[i][j]);
 			if (dta->real_map[i][j] == '1')
 			{
-				if (dta->real_map[i][j + 1] && (dta->real_map[i][j + 1] == '0' || dta->real_map[i][j + 1] == '1' || dta->real_map[i][j + 1] == 'N'))
+				if (dta->real_map[i][j + 1] && (dta->real_map[i][j + 1] == '0' || dta->real_map[i][j + 1] == '1' || dta->real_map[i][j + 1] == dta->payer_letter))
 					j++;
-				else if (dta->real_map[i][j - 1] && (dta->real_map[i][j - 1] == '0' || dta->real_map[i][j - 1] == '1' || dta->real_map[i][j + -1] == 'N'))
+				else if (dta->real_map[i][j - 1] && (dta->real_map[i][j - 1] == '0' || dta->real_map[i][j - 1] == '1' || dta->real_map[i][j + -1] == dta->payer_letter))
 					j++;
-				else if (dta->real_map[i + 1] && (dta->real_map[i + 1][j] == '0' || dta->real_map[i + 1][j] == '1' || dta->real_map[i + 1][j] == 'N'))
+				else if (dta->real_map[i + 1] && (dta->real_map[i + 1][j] == '0' || dta->real_map[i + 1][j] == '1' || dta->real_map[i + 1][j] == dta->payer_letter))
 					j++;
-				else if (dta->real_map[i - 1][j] && (dta->real_map[i - 1][j] == '0' || dta->real_map[i - 1][j] == '1' || dta->real_map[i - 1][j] == 'N'))
+				else if (dta->real_map[i - 1][j] && (dta->real_map[i - 1][j] == '0' || dta->real_map[i - 1][j] == '1' || dta->real_map[i - 1][j] == dta->payer_letter))
 					j++;
 				else if (dta->real_map[i][j] && dta->real_map[i][j] != '1')
 					j++;
