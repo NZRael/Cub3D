@@ -4,14 +4,12 @@ GRAY='\033[2;37m'
 CURSIVE='\033[3m'
 
 SRCS = main.c read_map.c \
-		parsing.c parsing2.c error.c \
-		parsing_map.c parsing_map2.c keys.c \
-		keys_left_and_right.c \
-		texture.c draw.c check_args.c \
-		raycast_init.c ft_take_map.c \
-		raycast2.c raycast_calcul.c \
-		get_next_line.c \
-		get_next_line_utils.c
+	parsing.c parsing2.c error.c \
+	parsing_map.c parsing_map2.c \
+	keys.c keys_left_and_right.c \
+	texture.c draw.c check_args.c \
+	raycast_init.c raycast2.c raycast_calcul.c \
+	get_next_line.c get_next_line_utils.c
 
 OBJ = ./objs
 OBJS = $(addprefix $(OBJ)/, ${SRCS:.c=.o})

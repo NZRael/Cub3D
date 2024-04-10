@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:08:30 by fleriche          #+#    #+#             */
-/*   Updated: 2024/04/08 16:12:43 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/09 14:02:55 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	verif_char(t_data *dta, int i, int i2)
 	{
 		dta->player_x = i;
 		dta->player_y = i2;
-		// printf("player_x = %d\n", dta->player_x);
-		// printf("player_y = %d\n", dta->player_y);
 	}
 }
 
@@ -37,7 +35,6 @@ void	verif_doublon(t_data *dta)
 	if (nbr_all != 1)
 		ft_exit(dta, "trop ou pas de N,S,E,W");
 }
-//printf("nbr_all : %d\n", nbr_all); //DOIT ETRE = 1
 
 void	nbr_char(t_data *dta, int i, int i2)
 {
@@ -92,7 +89,7 @@ void	verif_holes(t_data *dta)
 {
 	int	i;
 	int	i2;
-	
+
 	i = dta->start_map;
 	while (i <= dta->end_map)
 	{
@@ -118,18 +115,17 @@ void	projet_fini(t_data *dta)
 {
 	int	i;
 	int	i2;
-	
+
 	i = dta->start_map;
 	while (i <= dta->end_map)
 	{
 		i2 = 0;
 		while (dta->map_cpy[i][i2] != '\0')
 		{
-			//printf("mapcpy[%d][%d] = '%c'\n", i, i2, dta->map_cpy[i][i2]);
 			if (dta->map_cpy[i][i2] == ' ' || dta->map_cpy[i][i2] == dta->payer_letter || dta->map_cpy[i][i2] == '\n')
 				i2++;
 			else
-				ft_exit(dta, "TOI LA VIENS LA");
+				ft_exit(dta, "TOI LA VIENS LA (projet fini)");
 		}
 		i++;
 	}
@@ -139,7 +135,7 @@ void	le_vrai_one_extend(t_data *dta)
 {
 	int	i;
 	int	i2;
-	
+
 	i = dta->start_map;
 	while (i <= dta->end_map)
 	{
@@ -150,30 +146,29 @@ void	le_vrai_one_extend(t_data *dta)
 			{
 				if (dta->map_cpy[i][i2 + 1] && (dta->map_cpy[i][i2 + 1] == '0' || dta->map_cpy[i][i2 + 1] == '1'|| dta->map_cpy[i][i2 + 1] == '2'))
 					dta->map_cpy[i][i2 + 1] = dta->payer_letter;
-				if (dta->map_cpy[i][i2 - 1] && (dta->map_cpy[i][i2 - 1] == '0' || dta->map_cpy[i][i2 - 1] == '1' || dta->map_cpy[i][i2 + 1] == '2'))
+				if (i2 > 0 && (dta->map_cpy[i][i2 - 1] == '0' || dta->map_cpy[i][i2 - 1] == '1' || dta->map_cpy[i][i2 + 1] == '2'))
 					dta->map_cpy[i][i2 - 1] = dta->payer_letter;
-				if (dta->map_cpy[i + 1] && dta->map_cpy[i + 1][i2] && (dta->map_cpy[i + 1][i2] == '0' || dta->map_cpy[i + 1][i2] == '1' || dta->map_cpy[i][i2 + 1] == '2'))
+				if (dta->map_cpy[i + 1] && i2 <= (int)ft_strlen(dta->map_cpy[i + 1]) && (dta->map_cpy[i + 1][i2] == '0' || dta->map_cpy[i + 1][i2] == '1' || dta->map_cpy[i][i2 + 1] == '2'))
 					dta->map_cpy[i + 1][i2] = dta->payer_letter;
-				if (dta->map_cpy[i - 1][i2] && (dta->map_cpy[i - 1][i2] == '0' || dta->map_cpy[i - 1][i2] == '1' || dta->map_cpy[i][i2 + 1] == '2'))
+				if (dta->map_cpy[i - 1] && i2 <= (int)ft_strlen(dta->map_cpy[i - 1]) && (dta->map_cpy[i - 1][i2] == '0' || dta->map_cpy[i - 1][i2] == '1' || dta->map_cpy[i][i2 + 1] == '2'))
 					dta->map_cpy[i - 1][i2] = dta->payer_letter;
 			}
 			i2++;
 		}
 		i++;
-		// printf("'%s'", dta->map_cpy[i -1]);
 	}
 	dta->stop--;
-	if (dta->stop != 0)
+	if (dta->stop >= 0)
 		le_vrai_one_extend(dta);
-	projet_fini(dta);
-	// printf("'%s'", dta->map_cpy[dta->start_map]);
+	else
+		projet_fini(dta);
 }
 
 void	relance(t_data *dta)
 {
 	int	i;
 	int	i2;
-	
+
 	i = dta->start_map;
 	while (i <= dta->end_map)
 	{
@@ -202,7 +197,7 @@ void	create_mapcpy(t_data *dta)
 		i++;
 	}
 	dta->map_cpy[i] = NULL;
-	return;
+	return ;
 }
 
 int	parsing_map(t_data *dta)
@@ -211,8 +206,6 @@ int	parsing_map(t_data *dta)
 	int	i2;
 
 	i = dta->start_map;
-	// printf("DTA->STARTMAP = %d\n", dta->start_map);
-	// printf("DTA->ENDMAP = %d\n", dta->end_map);
 	while (i <= dta->end_map)
 	{
 		if (dta->real_map[i])
@@ -226,15 +219,13 @@ int	parsing_map(t_data *dta)
 		i++;
 	}
 	verif_doublon(dta);
-	create_mapcpy(dta);
 	dta->payer_letter = dta->real_map[dta->player_x][dta->player_y];
-	// printf("%c", dta->payer_letter);
+	create_mapcpy(dta);
 	verif_holes(dta);
 	zero_extend(dta);
 	relance(dta);
 	le_vrai_one_extend(dta);
-	//one_extend(dta);
-	return (0); 
+	return (0);
 }
 
 void	zero_extend(t_data *dta)
@@ -251,7 +242,7 @@ void	zero_extend(t_data *dta)
 			//printf("dta->real_map[%d][%d] = %c\n", i, j, dta->real_map[i][j]);
 			if (dta->real_map[i][j] == '0')
 			{
-				if (!dta->real_map[i+1])
+				if (!dta->real_map[i + 1])
 					ft_exit(dta, "braaaa\n");
 				if (dta->real_map[i][j + 1] && dta->real_map[i][j + 1] != '0' && dta->real_map[i][j + 1] != '1' && dta->real_map[i][j + 1] != dta->payer_letter)
 					ft_exit(dta, "puteuh a droite\n");
@@ -263,43 +254,40 @@ void	zero_extend(t_data *dta)
 					ft_exit(dta, "puteuh en haut\n");
 			}
 			j++;
-			
 		}
 		i++;
 	}
 }
 
+// void	one_extend(t_data *dta)
+// {
+// 	int	i;
+// 	int	j;
 
-void	one_extend(t_data *dta)
-{
-	int	i;
-	int	j;
-
-	i = dta->start_map;
-	while (dta->real_map[i] != NULL)
-	{
-		j = 0;
-		while (dta->real_map[i][j] && dta->real_map[i][j] != '\0')
-		{
-			//printf("dta->real_map[%d][%d] = %c\n", i, j, dta->real_map[i][j]);
-			if (dta->real_map[i][j] == '1')
-			{
-				if (dta->real_map[i][j + 1] && (dta->real_map[i][j + 1] == '0' || dta->real_map[i][j + 1] == '1' || dta->real_map[i][j + 1] == dta->payer_letter))
-					j++;
-				else if (dta->real_map[i][j - 1] && (dta->real_map[i][j - 1] == '0' || dta->real_map[i][j - 1] == '1' || dta->real_map[i][j + -1] == dta->payer_letter))
-					j++;
-				else if (dta->real_map[i + 1] && (dta->real_map[i + 1][j] == '0' || dta->real_map[i + 1][j] == '1' || dta->real_map[i + 1][j] == dta->payer_letter))
-					j++;
-				else if (dta->real_map[i - 1][j] && (dta->real_map[i - 1][j] == '0' || dta->real_map[i - 1][j] == '1' || dta->real_map[i - 1][j] == dta->payer_letter))
-					j++;
-				else if (dta->real_map[i][j] && dta->real_map[i][j] != '1')
-					j++;
-				else
-					ft_exit(dta, "A 1 is not in the map");
-			}
-			else
-				j++;		
-		}
-		i++;
-	}
-}
+// 	i = dta->start_map;
+// 	while (dta->real_map[i] != NULL)
+// 	{
+// 		j = 0;
+// 		while (dta->real_map[i][j] && dta->real_map[i][j] != '\0')
+// 		{
+// 			if (dta->real_map[i][j] == '1')
+// 			{
+// 				if (dta->real_map[i][j + 1] && (dta->real_map[i][j + 1] == '0' || dta->real_map[i][j + 1] == '1' || dta->real_map[i][j + 1] == dta->payer_letter))
+// 					j++;
+// 				else if (dta->real_map[i][j - 1] && (dta->real_map[i][j - 1] == '0' || dta->real_map[i][j - 1] == '1' || dta->real_map[i][j + -1] == dta->payer_letter))
+// 					j++;
+// 				else if (dta->real_map[i + 1] && (dta->real_map[i + 1][j] == '0' || dta->real_map[i + 1][j] == '1' || dta->real_map[i + 1][j] == dta->payer_letter))
+// 					j++;
+// 				else if (dta->real_map[i - 1][j] && (dta->real_map[i - 1][j] == '0' || dta->real_map[i - 1][j] == '1' || dta->real_map[i - 1][j] == dta->payer_letter))
+// 					j++;
+// 				else if (dta->real_map[i][j] && dta->real_map[i][j] != '1')
+// 					j++;
+// 				else
+// 					ft_exit(dta, "A 1 is not in the map");
+// 			}
+// 			else
+// 				j++;
+// 		}
+// 		i++;
+// 	}
+// }

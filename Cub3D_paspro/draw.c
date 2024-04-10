@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:16:00 by sboetti           #+#    #+#             */
-/*   Updated: 2024/03/27 14:41:36 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/08 16:58:08 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	my_mlx_pixel_get(t_data *dta, int x, int y, int i)
 {
 	char	*color;
 
-	color = dta->texture[i].addr + (y * dta->texture[i].l_length \
-			+ x * (dta->texture[i].bits / 8));
+	color = dta->tex[i].addr + (y * dta->tex[i].l_length \
+			+ x * (dta->tex[i].bits / 8));
 	return (*(unsigned int *)color);
 }

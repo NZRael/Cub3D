@@ -28,15 +28,15 @@ void	init_texture(t_data *dta, int i)
 
 	if (i < 0 || i >= 6)
 		ft_exit(dta, "Index de texture invalide.");
-	printf("Loading texture '%s'...\n", dta->texture[i].path);
-	dta->texture[i].tex = mlx_xpm_file_to_image(dta->mlx.mlx_ptr, \
-			dta->texture[i].path, &x, &y);
-	if (dta->texture[i].tex == NULL)
+	printf("Loading texture '%s'...\n", dta->tex[i].path);
+	dta->tex[i].tex = mlx_xpm_file_to_image(dta->mlx.mlx_ptr, \
+			dta->tex[i].path, &x, &y);
+	if (dta->tex[i].tex == NULL)
 		ft_exit(dta, "Invalid textures !");
-	printf("Texture '%s' is loaded successfully.\n", dta->texture[i].path);
-	dta->texture[i].addr = mlx_get_data_addr(dta->texture[i].tex, \
-			&dta->texture[i].bits, &dta->texture[i].l_length, \
-			&dta->texture[i].endian);
+	printf("Texture '%s' is loaded successfully.\n", dta->tex[i].path);
+	dta->tex[i].addr = mlx_get_data_addr(dta->tex[i].tex, \
+			&dta->tex[i].bits, &dta->tex[i].l_length, \
+			&dta->tex[i].endian);
 }
 
 void	print_fc(t_data *dta, int x)

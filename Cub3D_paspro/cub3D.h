@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:19 by fleriche          #+#    #+#             */
-/*   Updated: 2024/04/08 15:32:18 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/09 13:58:06 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_data
 	int			stop;
 	char		**map_cpy;
 	char		payer_letter;
-	t_texture	*texture;
+	t_texture	*tex;
 	t_color		color[2];
 	t_p			p;
 	t_mlx		mlx;
@@ -120,7 +120,7 @@ void	relance(t_data *dta);
 void	projet_fini(t_data *dta);
 void	create_mapcpy(t_data *dta);
 void	zero_extend(t_data *dta);
-void	one_extend(t_data *dta);
+// void	one_extend(t_data *dta);
 void	mlx_begin(t_data *dta);
 
 void	le_vrai_one_extend(t_data *dta);

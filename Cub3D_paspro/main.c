@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:16 by fleriche          #+#    #+#             */
-/*   Updated: 2024/04/03 16:02:14 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/08 17:01:35 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	main(int argc, char **argv)
 	check_args(argc, argv, &dta);
 	read_map(argv[1], &dta);
 	all_parsing(&dta, argv[1]);
-	// ft_take_map(&dta);
 	mlx_begin(&dta);
 	init_p(&dta);
 	init_textures(&dta);

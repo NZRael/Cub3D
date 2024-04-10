@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 16:14:31 by sboetti           #+#    #+#             */
-/*   Updated: 2024/04/05 16:43:49 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/08 17:10:20 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	parsing_before_map(t_data *dta, char *file)
 	return ;
 }
 
-char	*ft_joinforme(char *s1,  char *s2)
+char	*ft_joinforme(char *s1, char *s2)
 {
 	char	*str;
 	int		i;
@@ -121,7 +121,6 @@ void	gnl_forparsing(t_data *dta, char *file)
 		if (!line2)
 			break ;
 		line = ft_strjoinfree2(line, line2);
-		// printf("line = '%s'\n", line);
 		free(line2);
 	}
 	close(fd);
@@ -131,9 +130,4 @@ void	gnl_forparsing(t_data *dta, char *file)
 	free(line);
 	if (i == 0)
 		ft_exit(dta, "Nothing in the all_file");
-	return ;
 }
-
-
-//tout les 0 doivent pas etre en contact avec un space
-//tout les caractere 0 1 doivent etre en contact soit en haut en bas a gauche a droite avec un 0 ou un 1

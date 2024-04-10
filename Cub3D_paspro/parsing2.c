@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:29:30 by sboetti           #+#    #+#             */
-/*   Updated: 2024/04/08 16:33:46 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/08 16:58:08 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	noempty(t_data *dta, char *id)
 {
 	if (id == NULL)
-		ft_exit(dta, "There is 2 same id or one is missing");
+		ft_exit(dta, "There is two same id OR one id is missing ine the file.");
 }
 
 char	*init_path(t_data *dta, char *tex_path, int nbr)
@@ -51,16 +51,16 @@ void	verif_color(t_data *dta)
 	int	i;
 
 	i = 0;
-	while (dta->texture[4].path[i] != '\0')
+	while (dta->tex[4].path[i] != '\0')
 	{
-		if (!((dta->texture[4].path[i] == ' ' || dta->texture[4].path[i] == '\t' || dta->texture[4].path[i] == ',' ) || (dta->texture[4].path[i] >= '0' && dta->texture[4].path[i] <= '9')))
+		if (!((dta->tex[4].path[i] == ' ' || dta->tex[4].path[i] == '\t' || dta->tex[4].path[i] == ',' ) || (dta->tex[4].path[i] >= '0' && dta->tex[4].path[i] <= '9')))
 			ft_exit(dta, "nique bien ta mere\n");
 		i++;
 	}
 	i = 0;
-	while (dta->texture[5].path[i] != '\0')
+	while (dta->tex[5].path[i] != '\0')
 	{
-		if (!((dta->texture[5].path[i] == ' ' || dta->texture[5].path[i] == '\t' || dta->texture[5].path[i] == ',' ) || (dta->texture[5].path[i] >= '0' && dta->texture[5].path[i] <= '9')))
+		if (!((dta->tex[5].path[i] == ' ' || dta->tex[5].path[i] == '\t' || dta->tex[5].path[i] == ',' ) || (dta->tex[5].path[i] >= '0' && dta->tex[5].path[i] <= '9')))
 			ft_exit(dta, "nique bien ta mere\n");
 		i++;
 	}
@@ -122,32 +122,20 @@ int	first_parsing(t_data *dta)
 	noempty(dta, dta->we_line);
 	noempty(dta, dta->c_line);
 	noempty(dta, dta->f_line);
-	dta->texture = malloc(sizeof(t_texture) * 6);
-	dta->texture[0].path = init_path(dta, dta->no_line, 2);
-	dta->texture[1].path = init_path(dta, dta->so_line, 2);
-	dta->texture[2].path = init_path(dta, dta->ea_line, 2);
-	dta->texture[3].path = init_path(dta, dta->we_line, 2);
-	dta->texture[4].path = init_path(dta, dta->f_line, 1);
-	dta->texture[5].path = init_path(dta, dta->c_line, 1);
-	// printf("dta->texture[0].path : '%s'\n", dta->texture[0].path);
-	// printf("dta->texture[1].path : '%s'\n", dta->texture[1].path);
-	// printf("dta->texture[2].path : '%s'\n", dta->texture[2].path);
-	// printf("dta->texture[3].path : '%s'\n", dta->texture[3].path);
-	// printf("dta->texture[4].path : '%s'\n", dta->texture[4].path);
-	// printf("dta->texture[5].path : '%s'\n", dta->texture[5].path);
-	dta->color[0].red = init_color(dta, dta->texture[4].path);
-	dta->color[0].green = init_color(dta, dta->texture[4].path);
-	dta->color[0].blue = init_color(dta, dta->texture[4].path);
-	// printf("dta->color[0].red : '%d'\n", dta->color[0].red);
-	// printf("dta->color[0].green : '%d'\n", dta->color[0].green);
-	// printf("dta->color[0].blue : '%d'\n", dta->color[0].blue);
+	dta->tex = malloc(sizeof(t_texture) * 6);
+	dta->tex[0].path = init_path(dta, dta->no_line, 2);
+	dta->tex[1].path = init_path(dta, dta->so_line, 2);
+	dta->tex[2].path = init_path(dta, dta->ea_line, 2);
+	dta->tex[3].path = init_path(dta, dta->we_line, 2);
+	dta->tex[4].path = init_path(dta, dta->f_line, 1);
+	dta->tex[5].path = init_path(dta, dta->c_line, 1);
+	dta->color[0].red = init_color(dta, dta->tex[4].path);
+	dta->color[0].green = init_color(dta, dta->tex[4].path);
+	dta->color[0].blue = init_color(dta, dta->tex[4].path);
 	dta->i_color = 0;
-	dta->color[1].red = init_color(dta, dta->texture[5].path);
-	dta->color[1].green = init_color(dta, dta->texture[5].path);
-	dta->color[1].blue = init_color(dta, dta->texture[5].path);
-	// printf("dta->color[1].red : '%d'\n", dta->color[1].red);
-	// printf("dta->color[1].green : '%d'\n", dta->color[1].green);
-	// printf("dta->color[1].blue : '%d'\n", dta->color[1].blue);
+	dta->color[1].red = init_color(dta, dta->tex[5].path);
+	dta->color[1].green = init_color(dta, dta->tex[5].path);
+	dta->color[1].blue = init_color(dta, dta->tex[5].path);
 	verif_color(dta);
 	return (0);
 }
