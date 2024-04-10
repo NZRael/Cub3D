@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:45:38 by fleriche          #+#    #+#             */
-/*   Updated: 2024/04/08 15:20:51 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/10 16:02:54 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 int	all_parsing(t_data *dta, char *file)
 {
-	// for (int x = 0; dta->map[x] != NULL; x++)
-	// 	printf("dta->map[%d] = '%s'\n", x, dta->map[x]);
 	ft_initialisation(dta);
-	structuration(dta);
+	ft_structuration(dta);
 	first_parsing(dta);
 	parsing_before_map(dta, file);
 	parsing_map(dta);
@@ -44,9 +42,13 @@ void	ft_initialisation(t_data *dta)
 void	after_id(t_data *dta, int start)
 {
 	int	i;
+	int	x;
 
 	i = 0;
-	if (!dta->map[start])
+	x = 0;
+	while (dta->map[x])
+		x++;
+	if (x < start || !dta->map[start])
 		ft_exit(dta, "No map");
 	while (dta->map[start][i] && dta->map[start][i] != '1' \
 			&& dta->map[start][i] != '\0')
@@ -63,15 +65,23 @@ void	after_id(t_data *dta, int start)
 	dta->start_map = start;
 }
 
-int	structuration(t_data *dta)
+int	ft_structuration(t_data *dta)
 {
 	int	i;
 	int	i2;
 	int	stop;
 
-	i = 0;
+	i = -1;
+	i2 = 0;
 	stop = 6;
-	while (i < stop)
+	ft_in_structuration(dta, i, i2, &stop);
+	after_id(dta, stop);
+	return (0);
+}
+
+void	ft_in_structuration(t_data *dta, int i, int i2, int *stop)
+{
+	while (++i < *stop && dta->map[i])
 	{
 		i2 = 0;
 		while (dta->map[i][i2] \
@@ -94,9 +104,6 @@ int	structuration(t_data *dta)
 		if (dta->map[i][i2] == 'F')
 			dta->f_line = dta->map[i];
 		if (dta->map[i][i2] == '\0')
-			stop++;
-		i++;
+			(*stop)++;
 	}
-	after_id(dta, stop);
-	return (0);
 }

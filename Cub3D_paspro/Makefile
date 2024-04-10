@@ -3,8 +3,9 @@ GREEN='\033[32m'
 GRAY='\033[2;37m'
 CURSIVE='\033[3m'
 
-SRCS = main.c read_map.c \
-	parsing.c parsing2.c error.c \
+SRCS = main.c read_map.c error.c \
+	parsing.c parsing2.c parsing3.c \
+	parsing_before_map.c parsing_before_map2.c \
 	parsing_map.c parsing_map2.c \
 	keys.c keys_left_and_right.c \
 	texture.c draw.c check_args.c \

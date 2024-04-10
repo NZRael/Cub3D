@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:19 by fleriche          #+#    #+#             */
-/*   Updated: 2024/04/09 13:58:06 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/10 16:52:37 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ typedef struct s_texture
 
 typedef struct s_color
 {
-	int	red;
-	int	green;
-	int	blue;
+	int	r;
+	int	g;
+	int	b;
 }	t_color;
 
 typedef struct s_p
@@ -129,7 +129,7 @@ void	check_args(int argc, char **argv, t_data *dta);
 
 int		all_parsing(t_data *dta, char *file);
 void	ft_initialisation(t_data *dta);
-int		structuration(t_data *dta);
+int		ft_structuration(t_data *dta);
 int		first_parsing(t_data *dta);
 void	parsing_before_map(t_data *dta, char *file);
 void	gnl_forparsing(t_data *dta, char *file);
@@ -140,6 +140,7 @@ void	verif_doublon(t_data *dta);
 char	*init_path(t_data *dta, char *tex_path, int nbr);
 void	verif_color(t_data *dta);
 int		init_color(t_data *dta, char *id);
+void	ft_in_init_color(t_data *dta, int i2, char *id, char *nbr);
 void	read_map(char *map, t_data *dta);
 void	ft_free_tab_texture(t_data *dta);
 void	ft_free_tab_color(t_data *dta);
@@ -148,8 +149,10 @@ void	ft_exit_success(t_data *dta);
 int		ft_destroy_wind(int event, t_data *dta);
 void	verif_char(t_data *dta, int i, int i2);
 int		parsing_map(t_data *dta);
-void    player_extend(t_data *dta);
-void    verif_holes(t_data *dta);
+void	player_extend(t_data *dta);
+void	verif_holes(t_data *dta);
+void	search_real_start(t_data *dta);
+void	search_end_map(t_data *dta);
 
 int		keypress(int key, t_data *dta);
 void	ft_forward(t_data *dta, int key);
@@ -184,5 +187,6 @@ int		choose_texture(t_data *dta);
 int		test_colors(t_data *dta);
 void	ft_take_map(t_data *dta);
 int		ft_count_take_map(t_data *dta);
+void	ft_in_structuration(t_data *dta, int i, int i2, int *stop);
 
 #endif
