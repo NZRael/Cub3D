@@ -1,6 +1,6 @@
 WE ./textures/cobblestone.xpm
-NO ./textures/amour.xpm
-SO ./textures/bois1.xpm
+NO ./textures/bois1.xpm
+SO ./textures/amour.xpm
 EA ./textures/stoneblock.xpm
 
 	 

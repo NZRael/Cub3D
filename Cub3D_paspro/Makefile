@@ -27,6 +27,7 @@ all: $(NAME)
 
 $(NAME) : ${OBJS} $(LIB_F)/$(LIB)
 	@echo $(CURSIVE)$(GRAY) "     - Compiling $(NAME)..." $(NONE)
+	@make -C ./minilibx-linux
 	@gcc ${FLAGS} -o ${NAME} ${OBJS} ${FLAGS_MLX} -L./libft -lft
 	@echo $(GREEN)"     - Compiled -"$(NONE)
 	@echo $(CURSIVE)$(GRAY) "     - Deleted object files" $(NONE)
