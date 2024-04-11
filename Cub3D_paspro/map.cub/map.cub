@@ -1,11 +1,11 @@
-WE ./textures/mossy.xpm
-NO ./textures/purplestone.xpm
-SO ./textures/red_brick.xpm
-EA ./textures/bluestone.xpm
+WE ./textures/cobblestone.xpm
+NO ./textures/amour.xpm
+SO ./textures/bois1.xpm
+EA ./textures/stoneblock.xpm
 
 	 
-F 190, 150, 110
-C 70,	 190,				 255 
+F 80, 167, 88
+C 51,	 204,				 255 
 
 
 111111111111111111111111
