@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:29:19 by fleriche          #+#    #+#             */
-/*   Updated: 2024/04/10 16:52:37 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/11 13:29:18 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,16 +120,18 @@ void	relance(t_data *dta);
 void	projet_fini(t_data *dta);
 void	create_mapcpy(t_data *dta);
 void	zero_extend(t_data *dta);
-// void	one_extend(t_data *dta);
+void	ft_in_zero_extend(t_data *dta, int i, int j);
 void	mlx_begin(t_data *dta);
 
-void	le_vrai_one_extend(t_data *dta);
+void	ft_replace_map(t_data *dta);
+void	ft_in_replace_map(t_data *dta, int i, int j);
 void	ft_check_mapfile(t_data *dta, char *mapfile);
 void	check_args(int argc, char **argv, t_data *dta);
 
 int		all_parsing(t_data *dta, char *file);
 void	ft_initialisation(t_data *dta);
 int		ft_structuration(t_data *dta);
+void	ft_in_structuration(t_data *dta, int i, int i2, int *stop);
 int		first_parsing(t_data *dta);
 void	parsing_before_map(t_data *dta, char *file);
 void	gnl_forparsing(t_data *dta, char *file);
@@ -150,6 +152,7 @@ int		ft_destroy_wind(int event, t_data *dta);
 void	verif_char(t_data *dta, int i, int i2);
 int		parsing_map(t_data *dta);
 void	player_extend(t_data *dta);
+void	ft_in_player_extend(t_data *dta, int i, int j);
 void	verif_holes(t_data *dta);
 void	search_real_start(t_data *dta);
 void	search_end_map(t_data *dta);
@@ -173,7 +176,7 @@ void	init_player(t_data *dta);
 void	init_direction_w(t_data *dta);
 void	init_direction_e(t_data *dta);
 void	init_direction_s(t_data *dta);
-void    init_direction_n(t_data *dta);
+void	init_direction_n(t_data *dta);
 void	init_raycasting(t_data *dta);
 void	img_renderer(t_data *dta);
 void	calcul_delta(t_data *dta);
@@ -187,6 +190,5 @@ int		choose_texture(t_data *dta);
 int		test_colors(t_data *dta);
 void	ft_take_map(t_data *dta);
 int		ft_count_take_map(t_data *dta);
-void	ft_in_structuration(t_data *dta, int i, int i2, int *stop);
 
 #endif

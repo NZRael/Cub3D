@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:08:30 by fleriche          #+#    #+#             */
-/*   Updated: 2024/04/10 16:51:41 by sboetti          ###   ########.fr       */
+/*   Updated: 2024/04/11 13:17:56 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,6 @@ int	parsing_map(t_data *dta)
 	verif_holes(dta);
 	zero_extend(dta);
 	relance(dta);
-	le_vrai_one_extend(dta);
+	ft_replace_map(dta);
 	return (0);
 }

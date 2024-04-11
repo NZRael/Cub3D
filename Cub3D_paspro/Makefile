@@ -6,7 +6,7 @@ CURSIVE='\033[3m'
 SRCS = main.c read_map.c error.c \
 	parsing.c parsing2.c parsing3.c \
 	parsing_before_map.c parsing_before_map2.c \
-	parsing_map.c parsing_map2.c \
+	parsing_map.c parsing_map2.c parsing_map3.c \
 	keys.c keys_left_and_right.c \
 	texture.c draw.c check_args.c \
 	raycast_init.c raycast2.c raycast_calcul.c \
