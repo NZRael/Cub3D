@@ -60,7 +60,7 @@ void	after_id(t_data *dta, int start)
 		else if (dta->map[start][i] == '1')
 			break ;
 		else
-			ft_exit(dta, "y'a une couille entre les id et la map\n");
+			ft_exit(dta, "Error between first and second part of the map\n");
 	}
 	dta->start_map = start;
 }

@@ -34,24 +34,24 @@ void	zero_extend(t_data *dta)
 void	ft_in_zero_extend(t_data *dta, int i, int j)
 {
 	if (!dta->real_map[i + 1])
-		ft_exit(dta, "braaaa\n");
+		ft_exit(dta, "Invalid map");
 	if (dta->real_map[i][j + 1] && dta->real_map[i][j + 1] != '0'
 			&& dta->real_map[i][j + 1] != '1'
 			&& dta->real_map[i][j + 1] != dta->payer_letter)
-		ft_exit(dta, "puteuh a droite\n");
+		ft_exit(dta, "Invalid map");
 	if (dta->real_map[i][j - 1] && dta->real_map[i][j - 1] != '0'
 			&& dta->real_map[i][j - 1] != '1'
 			&& dta->real_map[i][j + -1] != dta->payer_letter)
-		ft_exit(dta, "puteuh a gauche\n");
+		ft_exit(dta, "Invalid map");
 	if (dta->real_map[i + 1] && dta->real_map[i + 1][j]
 			&& dta->real_map[i + 1][j] != '0'
 			&& dta->real_map[i + 1][j] != '1'
 			&& dta->real_map[i + 1][j] != dta->payer_letter)
-		ft_exit(dta, "puteuh en bas\n");
+		ft_exit(dta, "Invalid map");
 	if (dta->real_map[i - 1][j] && dta->real_map[i - 1][j] != '0'
 			&& dta->real_map[i - 1][j] != '1'
 			&& dta->real_map[i - 1][j] != dta->payer_letter)
-		ft_exit(dta, "puteuh en haut\n");
+		ft_exit(dta, "Invalid map");
 }
 
 void	ft_replace_map(t_data *dta)
@@ -75,7 +75,7 @@ void	ft_replace_map(t_data *dta)
 	if (dta->stop >= 0)
 		ft_replace_map(dta);
 	else
-		projet_fini(dta);
+		ft_check_replace_map(dta);
 }
 
 void	ft_in_replace_map(t_data *dta, int i, int i2)
@@ -102,7 +102,7 @@ void	ft_in_replace_map(t_data *dta, int i, int i2)
 		dta->map_cpy[i - 1][i2] = dta->payer_letter;
 }
 
-void	relance(t_data *dta)
+void	ft_boucle(t_data *dta)
 {
 	int	i;
 	int	i2;

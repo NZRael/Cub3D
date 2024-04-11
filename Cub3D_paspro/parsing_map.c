@@ -18,7 +18,7 @@ void	verif_char(t_data *dta, int i, int i2)
 			|| dta->real_map[i][i2] == 'N' || dta->real_map[i][i2] == 'S' \
 			|| dta->real_map[i][i2] == 'E' || dta->real_map[i][i2] == 'W' \
 			|| dta->real_map[i][i2] == ' ' || dta->real_map[i][i2] == '\n'))
-		ft_exit(dta, "map pas bon\n");
+		ft_exit(dta, "Invalid map");
 	if (dta->real_map[i][i2] == 'N' || dta->real_map[i][i2] == 'S' \
 			|| dta->real_map[i][i2] == 'E' || dta->real_map[i][i2] == 'W')
 	{
@@ -33,7 +33,7 @@ void	verif_doublon(t_data *dta)
 
 	nbr_all = dta->nbr_n + dta->nbr_s + dta->nbr_e + dta->nbr_w;
 	if (nbr_all != 1)
-		ft_exit(dta, "trop ou pas de N,S,E,W");
+		ft_exit(dta, "Number of player invalid");
 }
 
 void	nbr_char(t_data *dta, int i, int i2)
@@ -89,7 +89,7 @@ int	parsing_map(t_data *dta)
 	create_mapcpy(dta);
 	verif_holes(dta);
 	zero_extend(dta);
-	relance(dta);
+	ft_boucle(dta);
 	ft_replace_map(dta);
 	return (0);
 }

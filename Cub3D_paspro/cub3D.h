@@ -116,8 +116,8 @@ typedef struct s_data
 	int			draw_end;
 }	t_data;
 
-void	relance(t_data *dta);
-void	projet_fini(t_data *dta);
+void	ft_boucle(t_data *dta);
+void	ft_check_replace_map(t_data *dta);
 void	create_mapcpy(t_data *dta);
 void	zero_extend(t_data *dta);
 void	ft_in_zero_extend(t_data *dta, int i, int j);
@@ -188,7 +188,5 @@ void	test_texture(t_data *dta, int x);
 void	calcul_texture(t_data *dta);
 int		choose_texture(t_data *dta);
 int		test_colors(t_data *dta);
-void	ft_take_map(t_data *dta);
-int		ft_count_take_map(t_data *dta);
 
 #endif

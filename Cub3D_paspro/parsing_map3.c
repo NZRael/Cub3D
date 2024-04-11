@@ -25,10 +25,10 @@ void	verif_holes(t_data *dta)
 		{
 			if (i2 == 0 && (dta->map_cpy[i][i2] != '1'
 				&& dta->map_cpy[i][i2] != ' '))
-				ft_exit(dta, "map etrevuo");
+				ft_exit(dta, "Invalid map");
 			if (i == dta->start_map && (dta->map_cpy[i][i2] != '1'
 				&& dta->map_cpy[i][i2] != ' ' && dta->map_cpy[i][i2] != '\n'))
-				ft_exit(dta, "map etrevuo");
+				ft_exit(dta, "Invalid map");
 			if (dta->map_cpy[i][i2] == '0')
 			{
 				dta->map_cpy[i][i2] = '2';
@@ -64,17 +64,17 @@ void	ft_in_player_extend(t_data *dta, int i, int j)
 {
 	if (dta->map_cpy[i][j + 1] && (dta->map_cpy[i][j + 1] == ' '
 		|| dta->map_cpy[i][j + 1] == '\t' || dta->map_cpy[i][j + 1] == '\0'))
-		ft_exit(dta, "map ouverte");
+		ft_exit(dta, "Invalid map");
 	if (dta->map_cpy[i][j - 1] && (dta->map_cpy[i][j - 1] == ' '
 		|| dta->map_cpy[i][j - 1] == '\t' || dta->map_cpy[i][j - 1] == '\0'))
-		ft_exit(dta, "map ouverte");
+		ft_exit(dta, "Invalid map");
 	if (dta->map_cpy[i + 1] && dta->map_cpy[i + 1][j]
 		&& (dta->map_cpy[i + 1][j] == ' '
 		|| dta->map_cpy[i + 1][j] == '\t' || dta->map_cpy[i + 1][j] == '\0'))
-		ft_exit(dta, "map ouverte");
+		ft_exit(dta, "Invalid map");
 	if (dta->map_cpy[i - 1][j] && (dta->map_cpy[i - 1][j] == ' '
 		|| dta->map_cpy[i - 1][j] == '\t' || dta->map_cpy[i - 1][j] == '\0'))
-		ft_exit(dta, "map ouverte");
+		ft_exit(dta, "Invalid map");
 	if (dta->map_cpy[i][j + 1] && (dta->map_cpy[i][j + 1] == '0'
 		|| dta->map_cpy[i][j + 1] == '2'))
 		dta->map_cpy[i][j + 1] = dta->payer_letter;
@@ -89,7 +89,7 @@ void	ft_in_player_extend(t_data *dta, int i, int j)
 		dta->map_cpy[i - 1][j] = dta->payer_letter;
 }
 
-void	projet_fini(t_data *dta)
+void	ft_check_replace_map(t_data *dta)
 {
 	int	i;
 	int	i2;
@@ -105,7 +105,7 @@ void	projet_fini(t_data *dta)
 				|| dta->map_cpy[i][i2] == '\n')
 				i2++;
 			else
-				ft_exit(dta, "TOI LA VIENS LA (projet fini)");
+				ft_exit(dta, "Invalid map");
 		}
 		i++;
 	}
